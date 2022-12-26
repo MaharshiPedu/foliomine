@@ -19,5 +19,7 @@ from django.urls import path, include
 urlpatterns = [
     path('', include('foliomine.urls')),
     path('folio/', include('foliomine.urls')),
+    path('members/', include('members.urls')),
+    path('members/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
 ]
