@@ -1,0 +1,14 @@
+{% extends 'foliomine/base.html' %}
+
+{% if form.errors %}
+    <p>There was some error with the form!</p>
+{% endif %}
+
+
+{% block content %}
+    <form action="{% url 'register_user' %}" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" name="submit" value="Submit">
+    </form>
+{% endblock %}
