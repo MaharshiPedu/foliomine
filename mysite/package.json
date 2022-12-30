@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "node": "^19.3.0",
+    "semver": "^7.3.8"
+  }
+}

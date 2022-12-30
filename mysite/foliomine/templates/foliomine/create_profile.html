@@ -1,0 +1,21 @@
+{% extends 'foliomine/base.html' %}
+
+{% block content %}
+    <form action="{% url 'create_profile' %}" method="post">
+        <!-- <label for="first_name">First name: </label>
+        <input type="text"> <br> <br>
+
+        <label for="last_name">Last name: </label>
+        <input type="text"> <br><br>
+
+        <label for="about">About: </label>
+        <textarea name="about" id="about" cols="30" rows="10"></textarea>
+
+        <label for="github-link"></label> -->
+        {% csrf_token %}
+        {{form.as_p}}
+
+        <br><br>
+        <input type="submit" value="Save">
+    </form>
+{% endblock %}

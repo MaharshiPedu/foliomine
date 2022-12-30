@@ -2,8 +2,9 @@
 
 {% block content %}
     {% if user.is_authenticated %}    
-        <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'create_profile' %}">New profile</a>
         <br>
+        <a href="{% url 'logout' %}">Logout</a>
         <br>
     {% else %}
     <br><br>
