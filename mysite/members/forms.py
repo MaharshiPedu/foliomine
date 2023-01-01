@@ -5,7 +5,7 @@ from django import forms
 
 class RegisterUserForm(UserCreationForm):
 
-    email = forms.EmailField(max_length=50)
+    email = forms.EmailField(max_length=50, widget=forms.EmailInput(attrs={'class':'text-white-200'}))
 
     class Meta:
         model = User
