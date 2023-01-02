@@ -1,16 +1,31 @@
 {% extends 'foliomine/base.html' %}
 
 {% block content %}
-    <h2>Login</h2>
-    
-    <form action="" method="post">
-        {% csrf_token %}
-        <label for="username">Username</label>
-        <input type="text" class="username" name="username">
+    <div class="flex flex-col m-auto h-96 w-96 rounded-3xl bg-login_blue shadow-[9px_9px_0_rgb(22,22,22)]">
+        <div class="flex justify-center mt-9">
+            <h2 class="text-2xl text-[#ffde59]">Login</h2>
+        </div>
+        <br>
+        <div class="flex justify-center mt-6">
+            <form action="" method="post">
+                {% csrf_token %}
 
-        <label for="password">Password</label>
-        <input type="password" class="password" name="password">
+                <div class="mb-2">
+                    <label for="username" class="text-[#d9d9d9]">Username</label>
+                    <br class="mb-2">
+                    <input type="text" class="username rounded-3xl border-4 border-[#004aad] text-[#d9d9d9] bg-login_blue" name="username">
+                </div>
+                
+                <div class="mb-2">
+                    <label for="password" class="text-[#d9d9d9]">Password</label>
+                    <br class="mb-2">
+                    <input type="password" class="password rounded-3xl border-4 border-[#004aad] text-[#d9d9d9] bg-login_blue" name="password">
+                </div>
+                <br>
 
-        <input type="submit" name="submit" value="Submit">
-    </form>
+                <button type="submit" class=" border-2 rounded-2xl border-yellow-200 text-yellow-200"><p class="ml-3 mr-3 mt-2 mb-2">Login</p></button>
+                
+            </form>
+        </div>
+    </div>
 {% endblock %}
