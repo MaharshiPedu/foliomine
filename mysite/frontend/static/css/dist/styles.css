@@ -766,32 +766,12 @@ select {
   height: 24rem;
 }
 
-.h-\[2\] {
-  height: 2;
-}
-
-.h-\[28rem\] {
-  height: 28rem;
-}
-
-.h-\[30rem\] {
-  height: 30rem;
-}
-
-.h-\[32rem\] {
-  height: 32rem;
-}
-
 .h-\[34rem\] {
   height: 34rem;
 }
 
 .w-96 {
   width: 24rem;
-}
-
-.w-\[\] {
-  width: ;
 }
 
 .w-\[28rem\] {
@@ -897,11 +877,6 @@ select {
   --tw-shadow: 9px 9px 0 rgb(22,22,22);
   --tw-shadow-colored: 9px 9px 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.hover\:border-yellow-200:hover {
-  --tw-border-opacity: 1;
-  border-color: rgb(254 240 138 / var(--tw-border-opacity));
 }
 
 .hover\:bg-yellow-200:hover {
