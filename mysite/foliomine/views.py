@@ -21,11 +21,12 @@ def create_profile(request):
             twitter_link = form.cleaned_data['twitter_link']
             linkedin_link = form.cleaned_data['linkedin_link']
 
-            new_profile = Profile(first_name=first_name, last_name=last_name, about=about, github_link=github_link, twitter_link=twitter_link, linkedin_link=linkedin_link)
+            new_profile = Profile(first_name=first_name, last_name=last_name, about=about,
+                                  github_link=github_link, twitter_link=twitter_link, linkedin_link=linkedin_link)
             new_profile.user_id = request.user
             new_profile.save()
 
             return redirect('index')
 
     form = CreateProfileForm()
-    return render(request, 'foliomine/create_profile.html', {'form':form})
+    return render(request, 'foliomine/create_profile.html', {'form': form})

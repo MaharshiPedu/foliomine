@@ -1,48 +1,56 @@
 {% extends 'foliomine/base.html' %}
 
 {% block content %}
-    <div class="flex justify-center">
-        <form action="{% url 'create_profile' %}" method="post">
+<div class="flex justify-center">
+    <form action="{% url 'create_profile' %}" method="post">
 
-            {% csrf_token %}
-            <div class="grid grid-cols-2 gap-7">
-                <div>
-                    <label for="first_name" class="text-label_white">{{form.first_name.label}}</label>
-                    <br class="mb-2">
-                    <input type="text" name="first_name" class="rounded-3xl border-4 border-[#004aad] bg-website_blue text-label_white">    
-                </div>
-                <div>
-                    <label for="first_name" class="text-label_white">{{form.last_name.label}}</label>
-                    <br class="mb-2">
-                    <input type="text" name="last_name" class="rounded-3xl border-4 border-[#004aad] bg-website_blue text-label_white">
-                </div>
-                <div class="col-span-2">
-                    <label for="about" class="text-label_white">{{form.about.label}}</label>
-                    <br class="mb-2">
-                    <textarea type="text" name="about" rows="4" class="w-full rounded-lg border-4 border-[#004aad] bg-website_blue text-label_white"></textarea>
-                </div>
-                <div>
-                    <label for="github_link" class="text-label_white">{{form.github_link.label}}</label>
-                    <br class="mb-2">
-                    <input type="text" name="github_link" class="rounded-3xl border-4 border-[#004aad] bg-website_blue text-label_white">
-                </div>
-                <div>
-                    <label for="linkedin_link" class="text-label_white">{{form.linkedin_link.label}}</label>
-                    <br class="mb-2">
-                    <input type="text" name="linkedin_link" class="rounded-3xl border-4 border-[#004aad] bg-website_blue text-label_white">
-                </div>
-                <div>
-                    <label for="twitter_link" class="text-label_white">{{form.twitter_link.label}}</label>
-                    <br class="mb-2">
-                    <input type="text" name="twitter_link" class="rounded-3xl border-4 border-[#004aad] bg-website_blue text-label_white">
-                </div>
-                
+        {% csrf_token %}
+        <div class="grid grid-cols-2 gap-7">
+            <div>
+                <label for="first_name" class="text-label_white">{{form.first_name.label}}</label>
+                <br class="mb-2">
+                <input type="text" name="first_name"
+                    class="folio-form-input">
             </div>
-            <br>
-            <div class="flex justify-center">
-                <button type="submit" class=" border-2 rounded-2xl border-yellow-200 text-yellow-200"><p class="ml-3 mr-3 mt-2 mb-2">Save</p></button>
+            <div>
+                <label for="first_name" class="text-label_white">{{form.last_name.label}}</label>
+                <br class="mb-2">
+                <input type="text" name="last_name"
+                    class="folio-form-input">
+            </div>
+            <div class="col-span-2">
+                <label for="about" class="text-label_white">{{form.about.label}}</label>
+                <br class="mb-2">
+                <textarea type="text" name="about" rows="4"
+                    class="w-full rounded-lg border-4 border-[#004aad] bg-website_blue text-label_white"></textarea>
+            </div>
+            <div>
+                <label for="github_link" class="text-label_white">{{form.github_link.label}}</label>
+                <br class="mb-2">
+                <input type="text" name="github_link"
+                    class="folio-form-input">
+            </div>
+            <div>
+                <label for="linkedin_link" class="text-label_white">{{form.linkedin_link.label}}</label>
+                <br class="mb-2">
+                <input type="text" name="linkedin_link"
+                    class="folio-form-input">
+            </div>
+            <div>
+                <label for="twitter_link" class="text-label_white">{{form.twitter_link.label}}</label>
+                <br class="mb-2">
+                <input type="text" name="twitter_link"
+                    class="folio-form-input">
             </div>
 
-        </form>
-    </div>
+        </div>
+        <br>
+        <div class="flex justify-center">
+            <button type="submit" class=" border-2 rounded-2xl border-yellow-200 text-yellow-200">
+                <p class="ml-3 mr-3 mt-2 mb-2">Save</p>
+            </button>
+        </div>
+
+    </form>
+</div>
 {% endblock %}

@@ -1,37 +1,40 @@
 {% extends 'foliomine/base.html' %}
 
 {% block content %}
-    <div class="flex flex-col m-auto h-96 w-96 rounded-3xl bg-login_blue shadow-[9px_9px_0_rgb(22,22,22)]">
-        <div class="flex justify-center mt-9">
-            <h2 class="text-2xl text-[#ffde59]">Login</h2>
-        </div>
-        <br>
-        <div class="flex justify-center mt-6">
-            <form action="" method="post">
-                {% csrf_token %}
-                <div>
-                    {% if messages %}
-                        {% for message in messages %}
-                            {{ message }}
-                        {% endfor %}
-                    {% endif %}
-                </div>
-                <div class="mb-2">
-                    <label for="username" class="text-label_white">Username</label>
-                    <br class="mb-2">
-                    <input type="text" class="username rounded-3xl border-4 border-[#004aad] text-label_white bg-login_blue" name="username" placeholder="Enter your username">
-                </div>
-                
-                <div class="mb-2">
-                    <label for="password" class="text-label_white">Password</label>
-                    <br class="mb-2">
-                    <input type="password" class="password rounded-3xl border-4 border-[#004aad] text-label_white bg-login_blue" name="password" placeholder="Enter your password">
-                </div>
-                <br>
-
-                <button type="submit" class=" border-2 rounded-2xl border-yellow-200 text-yellow-200 hover:bg-yellow-200"><p class="ml-3 mr-3 mt-2 mb-2 ">Login</p></button>
-                
-            </form>
-        </div>
+<div class="flex flex-col m-auto h-96 w-96 rounded-3xl bg-login_blue shadow-[9px_9px_0_rgb(22,22,22)]">
+    <div class="flex justify-center mt-9">
+        <h2 class="text-2xl text-[#ffde59]">Login</h2>
     </div>
+    <br>
+    <div class="flex justify-center mt-6">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div>
+                {% if messages %}
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div class="mb-2">
+                <label for="username" class="text-label_white">Username</label>
+                <br class="mb-2">
+                <input type="text" class="username member-form-input" name="username" placeholder="Enter your username">
+            </div>
+
+            <div class="mb-2">
+                <label for="password" class="text-label_white">Password</label>
+                <br class="mb-2">
+                <input type="password" class="password member-form-input" name="password"
+                    placeholder="Enter your password">
+            </div>
+            <br>
+
+            <button type="submit" class=" border-2 rounded-2xl border-yellow-200 text-yellow-200 hover:bg-yellow-200">
+                <p class="ml-3 mr-3 mt-2 mb-2 ">Login</p>
+            </button>
+
+        </form>
+    </div>
+</div>
 {% endblock %}

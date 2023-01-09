@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.member-form-input {
+    @apply rounded-3xl border-4 border-[#004aad] text-label_white bg-login_blue;
+}
+
+.folio-form-input {
+    @apply rounded-3xl border-4 border-[#004aad] bg-website_blue text-label_white
+}
