@@ -2,21 +2,19 @@
 
 {% block content %}
 <div class="flex justify-center">
-    <form action="{% url 'create_profile' %}" method="post">
+    <form action="{% url 'create_profile' %}" method="post" enctype="multipart/form-data">
 
         {% csrf_token %}
         <div class="grid grid-cols-2 gap-7">
             <div>
                 <label for="first_name" class="text-label_white">{{form.first_name.label}}</label>
                 <br class="mb-2">
-                <input type="text" name="first_name"
-                    class="folio-form-input">
+                <input type="text" name="first_name" class="folio-form-input">
             </div>
             <div>
                 <label for="first_name" class="text-label_white">{{form.last_name.label}}</label>
                 <br class="mb-2">
-                <input type="text" name="last_name"
-                    class="folio-form-input">
+                <input type="text" name="last_name" class="folio-form-input">
             </div>
             <div class="col-span-2">
                 <label for="about" class="text-label_white">{{form.about.label}}</label>
@@ -27,26 +25,28 @@
             <div>
                 <label for="github_link" class="text-label_white">{{form.github_link.label}}</label>
                 <br class="mb-2">
-                <input type="text" name="github_link"
-                    class="folio-form-input">
+                <input type="text" name="github_link" class="folio-form-input">
             </div>
             <div>
                 <label for="linkedin_link" class="text-label_white">{{form.linkedin_link.label}}</label>
                 <br class="mb-2">
-                <input type="text" name="linkedin_link"
-                    class="folio-form-input">
+                <input type="text" name="linkedin_link" class="folio-form-input">
             </div>
             <div>
                 <label for="twitter_link" class="text-label_white">{{form.twitter_link.label}}</label>
                 <br class="mb-2">
-                <input type="text" name="twitter_link"
-                    class="folio-form-input">
+                <input type="text" name="twitter_link" class="folio-form-input">
+            </div>
+            <div>
+                <label for="profile_photo" class="text-label_white">{{form.profile_photo.label}}</label>
+                <br class="mb-2">
+                <input type="file" name="profile_photo" accept="image/*" class="text-sm text-yellow-400 file:border-0 file:rounded-3xl file:border-amber-700  file:bg-amber-800 file:text-gray-300 file:w-[6rem] file:py-3 hover:file:cursor-pointer file:mr-2">
             </div>
 
         </div>
         <br>
         <div class="flex justify-center">
-            <button type="submit" class=" border-2 rounded-2xl border-yellow-200 text-yellow-200">
+            <button type="submit" class="border-2 rounded-2xl border-yellow-200 text-yellow-200">
                 <p class="ml-3 mr-3 mt-2 mb-2">Save</p>
             </button>
         </div>
