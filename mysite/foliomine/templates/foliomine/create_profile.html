@@ -6,6 +6,11 @@
 
         {% csrf_token %}
         <div class="grid grid-cols-2 gap-7">
+            <div class="col-span-2">
+                <label for="profile_name" class="text-label_white">{{form.profile_name.label}}</label>
+                <br class="mb-2">
+                <input type="text" name="profile_name" class="folio-form-input w-full">
+            </div>
             <div>
                 <label for="first_name" class="text-label_white">{{form.first_name.label}}</label>
                 <br class="mb-2">
