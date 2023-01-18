@@ -1,15 +1,5 @@
 {% extends 'foliomine/base.html' %}
 
 {% block content %}
-    {% if user.is_authenticated %}    
-        <p class="text-2xl bg-200"><a href="{% url 'create_profile' %}">New profile</a></p>
-        <br>
-        <a href="{% url 'logout' %}">Logout</a>
-        <br>
-    {% else %}
-    <br><br>
-    <p class="text-2xl bg-blue-200"><a href="{% url 'login' %}">Login</a></p>
-    <br><br>
-        <a href="{% url 'register_user' %}">Register</a>
-    {% endif %}
+    
 {% endblock %}

@@ -31,4 +31,5 @@ def create_profile(request):
             return redirect('index')
 
     form = CreateProfileForm()
-    return render(request, 'foliomine/create_profile.html', {'form': form})
+    getRequest = True
+    return render(request, 'foliomine/create_profile.html', {'form': form, 'getRequest':getRequest})

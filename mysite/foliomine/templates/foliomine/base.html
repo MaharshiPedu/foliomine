@@ -9,7 +9,32 @@
     <title>Document</title>
 </head>
 <body class="bg-website_blue">
-    <h1 class=""><a href="{% url 'index' %}">Foliomine</a></h1>
+    <nav class="p-5 md:flex md:items-center md:justify-between">
+        <div class="">
+            <a href="{% url 'index' %}" class="text-2xl text-yellow-500 cursor-pointer font-bold">Foliomine</a>
+        </div>
+
+        <ul class="md:flex md:items-center md:static md:w-auto md:z-auto">
+            {% if user.is_authenticated %}
+                {% if not getRequest %}
+                    <li class="mx-4 my-6 md:my-0">
+                        <a href="{% url 'create_profile' %}" class="text-green-300 text-lg font-semibold">New Profile</a>
+                    </li>
+                {% endif %}
+                <li class="mx-4 my-6 md:my-0">
+                    <a href="{% url 'logout' %}" class="text-red-300 text-lg font-semibold">Logout</a>
+                </li>
+            {% else %}
+                <li class="mx-4 my-6 md:my-0">
+                    <a href="{% url 'login' %}" class="text-red-300 text-lg font-semibold">Login</a>
+                </li>
+                <li class="mx-4 my-6 md:my-0">
+                    <a href="{% url 'register_user' %}" class="text-green-300 text-lg font-semibold">Register</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+
     <br><br>
     <div>
         {% if messages %}
