@@ -1,5 +1,7 @@
 {% extends 'foliomine/base.html' %}
 
 {% block content %}
-    
+    {% for profile in profiles %}
+        <p class="font-helvetica">{{profile.profile_name}}</p>
+    {% endfor %}
 {% endblock %}

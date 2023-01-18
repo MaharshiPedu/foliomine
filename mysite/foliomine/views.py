@@ -5,6 +5,12 @@ from .models import Profile
 
 
 def index(request):
+    if request.user.is_authenticated:
+        user = request.user
+        profiles = Profile.objects.filter(user_id=user.id)
+        print(profiles)
+        return render(request, 'foliomine/index.html', {'profiles':profiles})
+
     return render(request, 'foliomine/index.html', {})
 
 

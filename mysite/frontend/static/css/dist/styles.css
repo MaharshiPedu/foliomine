@@ -882,6 +882,18 @@ select {
   font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
+.font-dm_sans {
+  font-family: DM Sans, sans-serif;
+}
+
+.font-helvetica {
+  font-family: Helvetica, sans-serif;
+}
+
+.font-nunito {
+  font-family: Nunito, sans-serif;
+}
+
 .text-5xl {
   font-size: 3rem;
   line-height: 1;

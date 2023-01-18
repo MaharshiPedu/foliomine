@@ -50,6 +50,12 @@ module.exports = {
                 'login_blue':'#061b29',
                 'label_white': '#d9d9d9',
             },
+            fontFamily: { 
+                poppins: ['Poppins', 'sans-serif'],
+                helvetica: ['Helvetica', 'sans-serif'],
+                dm_sans: ['DM Sans', 'sans-serif'],
+                nunito: ['Nunito', 'sans-serif']
+            },
         },
     },
     plugins: [
