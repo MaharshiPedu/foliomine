@@ -46,7 +46,7 @@ module.exports = {
             colors: {
                 transparent: 'transparent',
                 current: 'currentColor',
-                'website_blue':'#022033',
+                'website_blue':'#0f172a',
                 'login_blue':'#061b29',
                 'label_white': '#d9d9d9',
             },
