@@ -1,0 +1,17 @@
+{% extends 'foliomine/base.html' %}
+
+{% block content %}
+    <div class="flex justify-center">
+        <div class="grid grid-cols-2 gap-40">
+            <div class="border rounded-full w-48 h-48 object-center mx-auto overflow-hidden">
+                <img src="{{profile.profile_photo.url}}" alt="Profile Photo" title="Profile Photo">
+            </div>
+            <div class="text-slate-100 text-4xl mt-5">
+                <p>{{profile.first_name}} {{profile.last_name}}</p>
+
+            </div>
+            
+        </div>
+    </div>
+    
+{% endblock %}

@@ -54,7 +54,8 @@ module.exports = {
                 poppins: ['Poppins', 'sans-serif'],
                 helvetica: ['Helvetica', 'sans-serif'],
                 dm_sans: ['DM Sans', 'sans-serif'],
-                nunito: ['Nunito', 'sans-serif']
+                nunito: ['Nunito', 'sans-serif'],
+                jetbrains_mono: ['JetBrains Mono', 'monospace']
             },
         },
     },

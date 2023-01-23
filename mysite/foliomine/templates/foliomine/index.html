@@ -14,7 +14,7 @@
             <tbody>
                 {% for profile in profiles %}
                     <tr>
-                        <td class="text-md py-3 pl-3 text-slate-300">{{profile.profile_name}}</td>
+                        <td class="text-md py-3 pl-3 text-slate-300"><a href="{% url 'display_profile' profile.id %}">{{profile.profile_name}}</a></td>
                         <td class="pl-3"><img src="https://cdn-icons-png.flaticon.com/512/1160/1160515.png" alt="edit-button" title="Edit Button" class="w-5 h-5"></td>
                         <td class="pl-3"><img src="https://cdn-icons-png.flaticon.com/512/719/719731.png" alt="edit-button" title="Edit Button" class="w-5 h-5"></td>
                     </tr>
