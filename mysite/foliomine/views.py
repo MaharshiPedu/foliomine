@@ -28,11 +28,10 @@ def create_profile(request):
             twitter_link = form.cleaned_data['twitter_link']
             linkedin_link = form.cleaned_data['linkedin_link']
             profile_photo = form.cleaned_data['profile_photo']
-            #print(profile_photo.document.url)
-            # image = Image.open(profile_photo.file.url)
-            # croppedImage = image.crop((130, 50, 250, 150))
+            
             new_profile = Profile(profile_name=profile_name, first_name=first_name, last_name=last_name, about=about,
                                   github_link=github_link, twitter_link=twitter_link, linkedin_link=linkedin_link, profile_photo=profile_photo)
+            
             new_profile.user_id = request.user
             new_profile.save()
 

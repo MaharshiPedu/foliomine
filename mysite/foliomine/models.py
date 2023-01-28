@@ -1,8 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.conf import settings
-from django.contrib.auth import get_user_model
-
+from PIL import Image
+from mysite.settings import MEDIA_ROOT
 
 class Profile(models.Model):
 
@@ -18,6 +17,30 @@ class Profile(models.Model):
 
     class Meta:
         db_table = "Profile"
+
+    def save(self, *args, **kwargs):
+        super().save()
+        # [:len(MEDIA_ROOT)-5] removes media from the end of MEDIA_ROOT url, since profile_phot.url already contains it.
+        photo_url = MEDIA_ROOT[:len(MEDIA_ROOT)-5] + self.profile_photo.url
+        img = Image.open(photo_url)
+        width, height = img.size
+
+        if width > height:
+            remaining = width - height
+            left = remaining//2
+            right = height + (remaining//2)
+            croppedImage = img.crop((left, 0, right, height))
+
+        elif width < height:
+            remaining = height - width
+            top = remaining//2
+            bottom = width + (remaining//2)
+            croppedImage = img.crop((0, top, width, bottom))
+        
+        else:
+            croppedImage = img
+        
+        croppedImage.save(photo_url)
 
     def __str__(self):
         return self.first_name+" "+self.last_name+" profile"
