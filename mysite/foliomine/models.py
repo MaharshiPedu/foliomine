@@ -20,7 +20,7 @@ class Profile(models.Model):
 
     def save(self, *args, **kwargs):
         super().save()
-        # [:len(MEDIA_ROOT)-5] removes media from the end of MEDIA_ROOT url, since profile_phot.url already contains it.
+        # [:len(MEDIA_ROOT)-5] removes media from the end of MEDIA_ROOT url, since profile_photo.url already contains it.
         photo_url = MEDIA_ROOT[:len(MEDIA_ROOT)-5] + self.profile_photo.url
         img = Image.open(photo_url)
         width, height = img.size
