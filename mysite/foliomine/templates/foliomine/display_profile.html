@@ -2,24 +2,24 @@
 
 {% block content %}
     <div class="flex justify-center">
-        <div class="grid grid-cols-2 ">
-            <div class="border rounded-full w-48 h-48 object-center overflow-hidden">
-                <img src="{{profile.profile_photo.url}}" alt="Profile Photo" title="Profile Photo">
+        <div class="flex flex-col mx-40">
+            <div class="flex flex-row items-center">
+                <div class="border rounded-full w-48 h-48 object-center overflow-hidden">
+                    <img src="{{profile.profile_photo.url}}" alt="Profile Photo" title="Profile Photo">
+                </div>
+                <div class="text-slate-100 text-5xl mx-40">
+                    <p>{{profile.first_name}} {{profile.last_name}}</p>
+                </div>
             </div>
-            <div class="text-slate-100 text-4xl mt-6">
-                <p>{{profile.first_name}} {{profile.last_name}}</p>
+            <div>
+                <div class="text-slate-100 text-4xl mt-10 ">
+                    <p>About me</p>
+                </div>
+                <div class="text-slate-100 text-md mt-4 flex-wrap">
+                    <p>{{profile.about}}</p>
+                </div>
             </div>
-            
         </div>
-        <div>
-            <div class="text-slate-100 text-4xl mt-10 col-span-2">
-                <p>About me</p>
-            </div>
-            <div class="col-span-2 text-slate-100 text-md mx-40 mt-4">
-                <p>{{profile.about}}</p>
-            </div>
-        </div>
-        
     </div>
     
 {% endblock %}
