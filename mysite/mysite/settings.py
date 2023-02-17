@@ -126,7 +126,7 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-NPM_BIN_PATH = r"/usr/local/bin/npm"
+NPM_BIN_PATH = r"/usr/bin/npm"
 
 # Base url to serve media files
 MEDIA_URL = '/media/'
