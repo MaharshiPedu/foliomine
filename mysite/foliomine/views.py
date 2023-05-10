@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import CreateProfileForm
+from .forms import CreateProfileForm, CreateExperienceForm
 from .models import Profile
 from PIL import Image
 
@@ -37,9 +37,10 @@ def create_profile(request):
 
             return redirect('index')
 
-    form = CreateProfileForm()
+    create_profile_form = CreateProfileForm()
+    create_experience_form = CreateExperienceForm()
     getRequest = True
-    return render(request, 'foliomine/create_profile.html', {'form': form, 'getRequest':getRequest})
+    return render(request, 'foliomine/create_profile.html', {'create_profile_form': create_profile_form,'create_experience_form':create_experience_form, 'getRequest':getRequest})
 
 
 def displayProfile(request, profile_id):
