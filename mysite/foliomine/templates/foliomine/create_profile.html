@@ -5,49 +5,93 @@
     <form action="{% url 'create_profile' %}" method="post" enctype="multipart/form-data">
 
         {% csrf_token %}
-        <div class="grid grid-cols-2 gap-7">
-            <div class="col-span-2">
-                <label for="profile_name" class="text-label_white">{{form.profile_name.label}}</label>
-                <br class="mb-2">
-                <input type="text" name="profile_name" class="folio-form-input w-full">
-            </div>
-            <div>
-                <label for="first_name" class="text-label_white">{{form.first_name.label}}</label>
-                <br class="mb-2">
-                <input type="text" name="first_name" class="folio-form-input">
-            </div>
-            <div>
-                <label for="first_name" class="text-label_white">{{form.last_name.label}}</label>
-                <br class="mb-2">
-                <input type="text" name="last_name" class="folio-form-input">
-            </div>
-            <div class="col-span-2">
-                <label for="about" class="text-label_white">{{form.about.label}}</label>
-                <br class="mb-2">
-                <textarea type="text" name="about" rows="4"
-                    class="w-full rounded-lg border-4 border-[#004aad] bg-website_blue text-label_white"></textarea>
-            </div>
-            <div>
-                <label for="github_link" class="text-label_white">{{form.github_link.label}}</label>
-                <br class="mb-2">
-                <input type="text" name="github_link" class="folio-form-input">
-            </div>
-            <div>
-                <label for="linkedin_link" class="text-label_white">{{form.linkedin_link.label}}</label>
-                <br class="mb-2">
-                <input type="text" name="linkedin_link" class="folio-form-input">
-            </div>
-            <div>
-                <label for="twitter_link" class="text-label_white">{{form.twitter_link.label}}</label>
-                <br class="mb-2">
-                <input type="text" name="twitter_link" class="folio-form-input">
-            </div>
-            <div>
-                <label for="profile_photo" class="text-label_white">{{form.profile_photo.label}}</label>
-                <br class="mb-2">
-                <input type="file" name="profile_photo" accept="image/*" class="text-sm text-yellow-400 file:border-0 file:rounded-3xl file:border-amber-700  file:bg-amber-800 file:text-gray-300 file:w-[6rem] file:py-3 hover:file:cursor-pointer file:mr-2">
-            </div>
+        <div id="profile-form">
+            <div class="grid grid-cols-2 gap-7">
+                <div class="col-span-2">
+                  <label for="profile_name" class="text-label_white">{{form.profile_name.label}}</label>
+                  <br class="mb-2">
+                  <input type="text" name="profile_name" class="folio-form-input w-full">
 
+                </div>
+                <div>
+                  <label for="first_name" class="text-label_white">{{form.first_name.label}}</label>
+                  <br class="mb-2">
+                  <input type="text" name="first_name" class="folio-form-input">
+                </div>
+                <div>
+                  <label for="first_name" class="text-label_white">{{form.last_name.label}}</label>
+                  <br class="mb-2">
+                  <input type="text" name="last_name" class="folio-form-input">
+                </div>
+                <div class="col-span-2">
+                  <label for="about" class="text-label_white">{{form.about.label}}</label>
+                  <br class="mb-2">
+                  <textarea type="text" name="about" rows="4" class="w-full rounded-lg border-4 border-[#004aad] bg-website_blue text-label_white"></textarea>
+                </div>
+                <div>
+                  <label for="github_link" class="text-label_white">{{form.github_link.label}}</label>
+                  <br class="mb-2">
+                  <input type="text" name="github_link" class="folio-form-input">
+                </div>
+                <div>
+                  <label for="linkedin_link" class="text-label_white">{{form.linkedin_link.label}}</label>
+                  <br class="mb-2">
+                  <input type="text" name="linkedin_link" class="folio-form-input">
+                </div>
+                <div>
+                  <label for="twitter_link" class="text-label_white">{{form.twitter_link.label}}</label>
+                  <br class="mb-2">
+                  <input type="text" name="twitter_link" class="folio-form-input">
+                </div>
+                <div>
+                  <label for="profile_photo" class="text-label_white">{{form.profile_photo.label}}</label>
+                  <br class="mb-2">
+                  <input type="file" name="profile_photo" accept="image/*" class="text-sm text-yellow-400 file:border-0 file:rounded-3xl file:border-amber-700  file:bg-amber-800 file:text-gray-300 file:w-[6rem] file:py-3 hover:file:cursor-pointer file:mr-2">
+
+                </div>
+                <div class="flex justify-center col-span-2">
+                  <div id="">
+                      <p class="text-label_white text-2xl">Experience</p>
+                  </div>
+                </div>
+
+            </div>
+        </div>
+
+        <br class="mb-2">
+
+        <div id="exp-form" hidden>
+            <div id="internal-exp-form">
+
+                {% for create_experience_form in experience_formset %}
+                <div class="grid grid-cols-2 gap-7">
+                    <div>
+                        <label class="text-label_white">{{create_experience_form.company_name.label}}</label>
+                        <br class="mb-2">
+                        <input type="text" name="" class="folio-form-input">
+                    </div>
+                    <div>
+                        <label class="text-label_white">{{create_experience_form.job_profile.label}}</label>
+                        <br class="mb-2">
+                        <input type="text" class="folio-form-input">
+                    </div>
+                    <div>
+                        <label class="text-label_white">{{create_experience_form.start_date.label}}</label>
+                        <br class="mb-2">
+                        <input type="date" class="folio-form-input">
+                    </div>
+                    <div>
+                        <label class="text-label_white">{{create_experience_form.end_date.label}}</label>
+                        <br class="mb-2">
+                        <input type="date" class="folio-form-input">
+                    </div>
+                    <br class="mb-8">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="flex justify-center col-span-2" id="add-exp-more">
+            <button type="button" name="button">+ Add more</button>
         </div>
         <br>
         <div class="flex justify-center">
@@ -57,4 +101,16 @@
         </div>
     </form>
 </div>
+
+<script type="text/javascript">
+    const add_exp_button = document.getElementById('add-exp-more')
+
+    add_exp_button.addEventListener('click', () => {
+        const profile_form = document.getElementById('profile-form')
+        const internal_exp_form = document.getElementById('internal-exp-form').cloneNode(true)
+        internal_exp_form.hidden = false
+        profile_form.append(internal_exp_form)
+    })
+
+</script>
 {% endblock %}
