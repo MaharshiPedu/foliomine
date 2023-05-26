@@ -5,7 +5,11 @@
         <div class="flex flex-col mx-40 w-full">
             <div class="flex flex-row items-center justify-evenly">
                 <div class="border rounded-full w-48 h-48 object-center overflow-hidden">
-                    <img src="{{profile.profile_photo.url}}" alt="Profile Photo" title="Profile Photo">
+                    {% if profile.profile_photo %}
+                        <img src="{{profile.profile_photo.url}}" alt="Profile Photo" title="Profile Photo">
+                    {% else %}
+                        <img src="/media/profile_photos/th-1023457698_rpy3vkN.jpg" alt="Profile Photo" title="Profile Photo">
+                    {% endif %}
                 </div>
                 <div class="flex flex-col">
                     <div class="text-slate-100 text-5xl mx-40">
