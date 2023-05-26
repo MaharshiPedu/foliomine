@@ -10,7 +10,7 @@ class CreateProfileForm(forms.ModelForm):
         "class":"w-full rounded-lg border-4 border-[#004aad] bg-website_blue text-label_white"}))
     github_link = forms.CharField()
     linkedin_link = forms.CharField()
-    profile_photo = forms.FileField()
+    profile_photo = forms.FileField(required=False)
 
     class Meta:
         model = Profile
