@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.forms import formset_factory
 from .forms import CreateProfileForm, CreateExperienceForm
-from .models import Profile
+from .models import Profile, Experience
 from PIL import Image
 
 
@@ -17,7 +17,10 @@ def index(request):
 
 @login_required
 def create_profile(request):
+    experience_formset = formset_factory(CreateExperienceForm, extra=1)
     if request.method == 'POST':
+        print(request.POST)
+        print(request.POST.getlist('job_profile'))
         form = CreateProfileForm(request.POST, request.FILES)
         if form.is_valid():
             form.save(commit=False)
@@ -36,10 +39,20 @@ def create_profile(request):
             new_profile.user_id = request.user
             new_profile.save()
 
+            for i in range(len(request.POST.getlist('company_name'))):
+                company_name = request.POST.getlist('company_name')[i]
+                job_profile = request.POST.getlist('job_profile')[i]
+                start_date = request.POST.getlist('start_date')[i]
+                end_date = request.POST.getlist('end_date')[i]
+                details = request.POST.getlist('details')[i]
+
+                new_experience = Experience(profile_id=new_profile, company_name=company_name,job_profile=job_profile, start_date=start_date, end_date=end_date, details=details)
+                new_experience.save()
+
+
             return redirect('index')
 
     form = CreateProfileForm()
-    experience_formset = formset_factory(CreateExperienceForm, extra=1)
     getRequest = True
     return render(request, 'foliomine/create_profile.html', {'form': form, 'experience_formset': experience_formset, 'getRequest':getRequest})
 

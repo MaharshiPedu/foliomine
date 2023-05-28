@@ -74,7 +74,8 @@
                 <p class="ml-3 mr-3 mt-2 mb-2">Save</p>
             </button>
         </div>
-        <div id="exp-form" hidden>
+    </form>
+    <div id="exp-form" hidden>
             <div id="internal-exp-form">
 
                 {% for create_experience_form in experience_formset %}
@@ -84,30 +85,33 @@
                     <div>
                         <label class="text-label_white">{{create_experience_form.company_name.label}}</label>
                         <br class="mb-2">
-                        <input type="text" name="" class="folio-form-input">
+                        <input type="text" class="folio-form-input" name="company_name">
                     </div>
                     <div>
                         <label class="text-label_white">{{create_experience_form.job_profile.label}}</label>
                         <br class="mb-2">
-                        <input type="text" class="folio-form-input">
+                        <input type="text" class="folio-form-input" name="job_profile">
                     </div>
                     <div>
                         <label class="text-label_white">{{create_experience_form.start_date.label}}</label>
                         <br class="mb-2">
-                        <input type="date" class="folio-form-input">
+                        <input type="date" class="folio-form-input" name="start_date">
                     </div>
                     <div>
                         <label class="text-label_white">{{create_experience_form.end_date.label}}</label>
                         <br class="mb-2">
-                        <input type="date" class="folio-form-input">
+                        <input type="date" class="folio-form-input" name="end_date">
                     </div>
-
+                    <div class="col-span-2">
+                    <label for="details" class="text-label_white">{{create_experience_form.details.label}}</label>
+                    <br class="mb-2">
+                    <textarea type="text" name="details" rows="4"
+                        class="w-full rounded-lg border-4 border-[#004aad] bg-website_blue text-label_white"></textarea>
+                </div>
                 </div>
                 {% endfor %}
             </div>
         </div>
-
-    </form>
 </div>
 
 <script type="text/javascript">
@@ -117,6 +121,7 @@
         const profile_form = document.getElementById('profile-form')
         const internal_exp_form = document.getElementById('internal-exp-form').cloneNode(true)
         internal_exp_form.hidden = false
+        internal_exp_form.setAttribute('id', '')
         profile_form.append(internal_exp_form)
     })
 
