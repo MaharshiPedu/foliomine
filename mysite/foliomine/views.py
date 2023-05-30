@@ -19,8 +19,6 @@ def index(request):
 def create_profile(request):
     experience_formset = formset_factory(CreateExperienceForm, extra=1)
     if request.method == 'POST':
-        print(request.POST)
-        print(request.POST.getlist('job_profile'))
         form = CreateProfileForm(request.POST, request.FILES)
         if form.is_valid():
             form.save(commit=False)
@@ -59,4 +57,11 @@ def create_profile(request):
 
 def displayProfile(request, profile_id):
     profile = Profile.objects.get(id=profile_id)
-    return render(request, 'foliomine/display_profile.html', {'profile':profile})
+    experiences = Experience.objects.filter(profile_id=profile_id)
+    exp_len = len(experiences)
+    context = {
+        'profile': profile,
+        'experiences': experiences,
+        'exp_len': exp_len
+    }
+    return render(request, 'foliomine/display_profile.html', context)
