@@ -81,14 +81,23 @@
                         <div class="text-slate-100 text-md mt-2 text-center">
                             {{ experience.start_date }} - {{ experience.end_date }}
                         </div>
-                        <div class="text-slate-100 text-md mt-2 text-center" hidden>
+
+                        <div id="show-details-button{{ forloop.counter }}" onclick="show_details({{ forloop.counter }})">
+                            <div class="flex justify-center">
+                                <div class="w-40 border-2 border-dashed border-indigo-500 rounded-2xl hover:bg-indigo-500 cursor-pointer mt-2 transition">
+                                    <p type="button" name="button" class="flex my-1 justify-center text-label_white hover:text-black">Show details</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-slate-100 text-md mt-2 text-center" id="detail{{ forloop.counter }}" hidden>
                             {{ experience.details }}
                         </div>
-                        {% if loop.index != exp_len %}
+
+                        {% if not forloop.last %}
                             <div class="flex justify-center">
-                                <div class="w-2 h-20 border-2 border-blue-600 rounded bg-blue-600 mt-2 mb-2"></div>
+                                <div class="w-1 h-20 border-2 border-indigo-500 rounded bg-indigo-500 mt-2 mb-2"></div>
                             </div>
-                        
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -97,5 +106,16 @@
             <br class="mb-10">
         </div>
     </div>
+<script type="text/javascript">
+    
+    function show_details(count) {
+        var show_details_button = document.getElementById('show-details-button'+count)
+        var detail = document.getElementById('detail'+count)
+        console.log(detail)
+        detail.hidden = false
+        show_details_button.hidden = true
+    }
+
+</script>
     
 {% endblock %}
