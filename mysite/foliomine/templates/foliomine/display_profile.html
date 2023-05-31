@@ -47,17 +47,75 @@
                 </div>
             </div>
             <div>
-                <div class="text-slate-100 text-4xl mt-10 ">
-                    <p>About me</p>
+                <div class="flex justify-center">
+                    <div class="text-slate-100 text-4xl mt-10 underline decoration-4 decoration-green-300">
+                        <p>About me</p>
+                    </div>
                 </div>
-                <div class="text-slate-100 text-md mt-4 flex-wrap">
+                <div class="text-slate-100 text-md mt-10 flex-wrap">
                     <p>{{profile.about}}</p>
                 </div>
             </div>
-            
-            
+            {% if experiences %}
+                <div class="flex justify-center">
+                    {% if exp_len > 1 %}
+                        <div class="text-slate-100 text-4xl mt-10 underline decoration-4 decoration-indigo-500">
+                            Experiences
+                        </div>
+                    {% else %}
+                        <div class="text-slate-100 text-4xl mt-10 underline decoration-4 decoration-indigo-500">
+                            Experience
+                        </div>
+                    {% endif %}
+                </div>
+                <br class="mb-10">
+                <div class="flex justify-center">
+                    <div class="flex-col justify-center">
+                    {% for experience in experiences %}
+                        <div class="text-slate-100 text-2xl text-center">
+                            {{ experience.job_profile }}
+                        </div>
+                        <div class="text-slate-100 text-xl mt-2 text-center">
+                            {{ experience.company_name }}
+                        </div>
+                        <div class="text-slate-100 text-md mt-2 text-center">
+                            {{ experience.start_date }} - {{ experience.end_date }}
+                        </div>
+
+                        <div id="show-details-button{{ forloop.counter }}" onclick="show_details({{ forloop.counter }})">
+                            <div class="flex justify-center">
+                                <div class="w-40 border-2 border-dashed border-indigo-500 rounded-2xl hover:bg-indigo-500 cursor-pointer mt-2 transition">
+                                    <p type="button" name="button" class="flex my-1 justify-center text-label_white hover:text-black">Show details</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-slate-100 text-md mt-2 text-center" id="detail{{ forloop.counter }}" hidden>
+                            {{ experience.details }}
+                        </div>
+
+                        {% if not forloop.last %}
+                            <div class="flex justify-center">
+                                <div class="w-1 h-20 border-2 border-indigo-500 rounded bg-indigo-500 mt-2 mb-2"></div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                </div>
+            {% endif %}
+            <br class="mb-10">
         </div>
-        
     </div>
+<script type="text/javascript">
+    
+    function show_details(count) {
+        var show_details_button = document.getElementById('show-details-button'+count)
+        var detail = document.getElementById('detail'+count)
+        console.log(detail)
+        detail.hidden = false
+        show_details_button.hidden = true
+    }
+
+</script>
     
 {% endblock %}
