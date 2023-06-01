@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.forms import formset_factory
-from .forms import CreateProfileForm, CreateExperienceForm
-from .models import Profile, Experience
+from .forms import CreateProfileForm, CreateExperienceForm, CreateProjectForm
+from .models import Profile, Experience, Project
 from PIL import Image
 
 
@@ -17,7 +17,9 @@ def index(request):
 
 @login_required
 def create_profile(request):
+    print(request.POST)
     experience_formset = formset_factory(CreateExperienceForm, extra=1)
+    project_formset = formset_factory(CreateProjectForm, extra=1)
     if request.method == 'POST':
         form = CreateProfileForm(request.POST, request.FILES)
         if form.is_valid():
@@ -47,12 +49,26 @@ def create_profile(request):
                 new_experience = Experience(profile_id=new_profile, company_name=company_name,job_profile=job_profile, start_date=start_date, end_date=end_date, details=details)
                 new_experience.save()
 
+            for i in range(len(request.POST.getlist('project_name'))):
+                project_name = request.POST.getlist('project_name')[i]
+                start_date = request.POST.getlist('start_date')[i]
+                end_date = request.POST.getlist('end_date')[i]
+                project_details = request.POST.getlist('project_details')[i]
+
+                new_project = Project(profile_id=new_profile, project_name=project_name, start_date=start_date, end_date=end_date, project_details=project_details)
+                new_project.save()
 
             return redirect('index')
 
     form = CreateProfileForm()
     getRequest = True
-    return render(request, 'foliomine/create_profile.html', {'form': form, 'experience_formset': experience_formset, 'getRequest':getRequest})
+    context = {
+        'form': form,
+        'experience_formset': experience_formset,
+        'project_formset': project_formset,
+        'getRequest':getRequest
+    }
+    return render(request, 'foliomine/create_profile.html', context)
 
 
 def displayProfile(request, profile_id):
