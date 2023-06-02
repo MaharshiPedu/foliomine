@@ -1,4 +1,4 @@
-from .models import Profile, Experience
+from .models import Profile, Experience, Project
 from django import forms
 
 class CreateProfileForm(forms.ModelForm):
@@ -31,3 +31,15 @@ class CreateExperienceForm(forms.ModelForm):
         fields = ('company_name', 'start_date', 'end_date', 'details', 'job_profile')
         labels = {'company_name':'Company Name', 'start_date':'Start Date', 'end_date':'End Date',
                   'details':'Description', 'job_profile':'Job Profile'}
+
+class CreateProjectForm(forms.ModelForm):
+
+    project_name = forms.CharField(widget=forms.TextInput(attrs={"class":"folio-form-input cols-span-2"}))
+    start_date = forms.DateField(input_formats=['%m-%Y'], widget = forms.DateInput(attrs={"type":"date", "class":"folio-form-input cols-span-2"}))
+    end_date = forms.DateField(input_formats=['%m-%Y'], widget = forms.DateInput(attrs={"type":"date", "class":"folio-form-input cols-span-2"}))
+    project_details = forms.CharField(widget = forms.Textarea(attrs={"class":"w-full rounded-lg border-4 border-[#004aad] bg-website_blue text-label_white"}))
+
+    class Meta:
+        model = Project
+        fields = ('project_name', 'start_date', 'end_date', 'project_details')
+        labels = {'project_name': 'Project Name', 'start_date': 'Start Date', 'end_date': 'End Date', 'project_details': 'Details'}
