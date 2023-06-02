@@ -48,7 +48,7 @@
             </div>
             <div>
                 <div class="flex justify-center">
-                    <div class="text-slate-100 text-4xl mt-10 underline decoration-4 decoration-green-300">
+                    <div class="text-slate-100 text-4xl mt-10 underline underline-offset-8 decoration-4 decoration-green-300">
                         <p>About me</p>
                     </div>
                 </div>
@@ -59,11 +59,11 @@
             {% if experiences %}
                 <div class="flex justify-center">
                     {% if exp_len > 1 %}
-                        <div class="text-slate-100 text-4xl mt-10 underline decoration-4 decoration-indigo-500">
+                        <div class="text-slate-100 text-4xl mt-10 underline underline-offset-8 decoration-4 decoration-indigo-500">
                             Experiences
                         </div>
                     {% else %}
-                        <div class="text-slate-100 text-4xl mt-10 underline decoration-4 decoration-indigo-500">
+                        <div class="text-slate-100 text-4xl mt-10 underline underline-offset-8 decoration-4 decoration-indigo-500">
                             Experience
                         </div>
                     {% endif %}
@@ -104,14 +104,63 @@
                 </div>
             {% endif %}
             <br class="mb-10">
+
+            {% if projects %}
+                <div class="flex justify-center">
+                    {% if proj_len > 1 %}
+                        <div class="text-slate-100 text-4xl mt-10 underline underline-offset-8 decoration-4 decoration-orange-500">
+                            Projects
+                        </div>
+                    {% else %}
+                        <div class="text-slate-100 text-4xl mt-10 underline underline-offset-8 decoration-4 decoration-orange-500">
+                            Project
+                        </div>
+                    {% endif %}
+                </div>
+                <br class="mb-10">
+                <div class="flex justify-center">
+                    <div class="flex-col justify-center">
+                    {% for project in projects %}
+                        <div class="text-slate-100 text-2xl text-center">
+                            {{ project.project_name }}
+                        </div>
+                        <div class="text-slate-100 text-md mt-2 text-center">
+                            {{ project.start_date }} - {{ project.end_date }}
+                        </div>
+
+                        <div id="show-proj-details-button{{ forloop.counter }}" onclick="show_details_proj({{ forloop.counter }})">
+                            <div class="flex justify-center">
+                                <div class="w-40 border-2 border-dashed border-orange-500 rounded-2xl hover:bg-orange-500 cursor-pointer mt-2 transition">
+                                    <p type="button" name="button" class="flex my-1 justify-center text-label_white hover:text-black">Show details</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-slate-100 text-md mt-2 text-center" id="proj_detail{{ forloop.counter }}" hidden>
+                            {{ project.project_details }}
+                        </div>
+                        <br class="mb-2 mt-2">
+                    {% endfor %}
+                </div>
+                </div>
+            {% endif %}
+            <br class="mb-10">
         </div>
     </div>
 <script type="text/javascript">
     
+    // function to show the details of experiences
     function show_details(count) {
         var show_details_button = document.getElementById('show-details-button'+count)
         var detail = document.getElementById('detail'+count)
-        console.log(detail)
+        detail.hidden = false
+        show_details_button.hidden = true
+    }
+
+    // function to show the details of projects
+    function show_details_proj(count) {
+        var show_details_button = document.getElementById('show-proj-details-button'+count)
+        var detail = document.getElementById('proj_detail'+count)
         detail.hidden = false
         show_details_button.hidden = true
     }

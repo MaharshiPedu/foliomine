@@ -74,10 +74,15 @@ def create_profile(request):
 def displayProfile(request, profile_id):
     profile = Profile.objects.get(id=profile_id)
     experiences = Experience.objects.filter(profile_id=profile_id)
+    projects = Project.objects.filter(profile_id=profile_id)
+
+    proj_len = len(projects)
     exp_len = len(experiences)
     context = {
         'profile': profile,
         'experiences': experiences,
+        'projects': projects,
+        'proj_len': proj_len,
         'exp_len': exp_len
     }
     return render(request, 'foliomine/display_profile.html', context)
