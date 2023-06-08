@@ -79,7 +79,7 @@
                             {{ experience.company_name }}
                         </div>
                         <div class="text-slate-100 text-md mt-2 text-center">
-                            {{ experience.start_date }} - {{ experience.end_date }}
+                            {{ experience.exp_start_date }} - {{ experience.exp_end_date }}
                         </div>
 
                         <div id="show-details-button{{ forloop.counter }}" onclick="show_details({{ forloop.counter }})">
@@ -125,7 +125,7 @@
                             {{ project.project_name }}
                         </div>
                         <div class="text-slate-100 text-md mt-2 text-center">
-                            {{ project.start_date }} - {{ project.end_date }}
+                            {{ project.proj_start_date }} - {{ project.proj_end_date }}
                         </div>
 
                         <div id="show-proj-details-button{{ forloop.counter }}" onclick="show_details_proj({{ forloop.counter }})">

@@ -103,14 +103,14 @@
                     <input type="text" class="folio-form-input" name="job_profile">
                 </div>
                 <div>
-                    <label class="text-label_white">{{create_experience_form.start_date.label}}</label>
+                    <label class="text-label_white">{{create_experience_form.exp_start_date.label}}</label>
                     <br class="mb-2">
-                    <input type="date" class="folio-form-input" name="start_date">
+                    <input type="date" class="folio-form-input" name="exp_start_date">
                 </div>
                 <div>
-                    <label class="text-label_white">{{create_experience_form.end_date.label}}</label>
+                    <label class="text-label_white">{{create_experience_form.exp_end_date.label}}</label>
                     <br class="mb-2">
-                    <input type="date" class="folio-form-input" name="end_date">
+                    <input type="date" class="folio-form-input" name="exp_end_date">
                 </div>
                 <div class="col-span-2">
                     <label for="details" class="text-label_white">{{create_experience_form.details.label}}</label>
@@ -136,20 +136,35 @@
                         <input type="text" class="folio-form-input w-full" name="project_name">
                     </div>
                     <div>
-                        <label class="text-label_white">{{create_project_form.start_date.label}}</label>
+                        <label class="text-label_white">{{create_project_form.proj_start_date.label}}</label>
                         <br class="mb-2">
-                        <input type="date" class="folio-form-input" name="start_date">
+                        <input type="date" class="folio-form-input" name="proj_start_date">
                     </div>
                     <div>
-                        <label class="text-label_white">{{create_project_form.end_date.label}}</label>
+                        <label class="text-label_white">{{create_project_form.proj_end_date.label}}</label>
                         <br class="mb-2">
-                        <input type="date" class="folio-form-input" name="end_date">
+                        <input type="date" class="folio-form-input" name="proj_end_date">
                     </div>
                     <div class="col-span-2">
                         <label for="project_details" class="text-label_white">{{create_project_form.project_details.label}}</label>
                         <br class="mb-2">
                         <textarea type="text" name="project_details" rows="4"
                             class="w-full rounded-lg border-4 border-[#004aad] bg-website_blue text-label_white"></textarea>
+                    </div>
+                    <div>
+                        <label class="text-label_white">{{create_project_form.project_code_link.label}}</label>
+                        <br class="mb-2">
+                        <input type="text" class="folio-form-input" name="project_code_link">
+                    </div>
+                    <div>
+                        <label class="text-label_white">{{create_project_form.project_link.label}}</label>
+                        <br class="mb-2">
+                        <input type="text" class="folio-form-input" name="project_link">
+                    </div>
+                    <div>
+                        <label for="project_photo" class="text-label_white">{{create_project_form.project_photo.label}}</label>
+                        <br class="mb-2">
+                        <input type="file" name="project_photo" accept="image/*" class="text-sm text-yellow-400 file:border-0 file:rounded-3xl file:border-amber-700  file:bg-amber-800 file:text-gray-300 file:w-[6rem] file:py-3 hover:file:cursor-pointer hover:file:bg-amber-700 transition file:mr-2">
                     </div>
                 </div>
             </div>
