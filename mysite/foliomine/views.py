@@ -17,9 +17,9 @@ def index(request):
 @login_required
 def create_profile(request):
     print(request.POST)
-    experience_formset = formset_factory(CreateExperienceForm, extra=1)
-    project_formset = formset_factory(CreateProjectForm, extra=1)
-    project_forms = project_formset(request.POST, request.FILES)
+    # experience_formset = formset_factory(CreateExperienceForm, extra=1)
+    # project_formset = formset_factory(CreateProjectForm, extra=1)
+    # project_forms = project_formset(request.POST, request.FILES)
     if request.method == 'POST':
         form = CreateProfileForm(request.POST, request.FILES)
         if form.is_valid():
@@ -86,11 +86,13 @@ def create_profile(request):
             return redirect('index')
 
     form = CreateProfileForm()
+    experience_form = CreateExperienceForm()
+    project_form = CreateProjectForm()
     getRequest = True
     context = {
         'form': form,
-        'experience_formset': experience_formset,
-        'project_formset': project_formset,
+        'experience_form': experience_form,
+        'project_form': project_form,
         'getRequest': getRequest
     }
     return render(request, 'foliomine/create_profile.html', context)
