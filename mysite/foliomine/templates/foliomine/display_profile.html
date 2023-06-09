@@ -118,33 +118,29 @@
                     {% endif %}
                 </div>
                 <br class="mb-10">
-                <div class="flex justify-center">
-                    <div class="flex-col justify-center">
+                <div class="grid grid-cols-2 gap-14">
+                    
                     {% for project in projects %}
-                        <div class="text-slate-100 text-2xl text-center">
-                            {{ project.project_name }}
-                        </div>
-                        <div class="text-slate-100 text-md mt-2 text-center">
-                            {{ project.proj_start_date }} - {{ project.proj_end_date }}
-                        </div>
-
-                        <div id="show-proj-details-button{{ forloop.counter }}" onclick="show_details_proj({{ forloop.counter }})">
-                            <div class="flex justify-center">
-                                <div class="w-40 border-2 border-dashed border-orange-500 rounded-2xl hover:bg-orange-500 cursor-pointer mt-2 transition">
-                                    <p type="button" name="button" class="flex my-1 justify-center text-label_white hover:text-black">Show details</p>
-                                </div>
+                        
+                        <div class="bg-login_blue rounded-2xl shadow-[18px_18px_0_rgb(22,22,22)] transition ease-in-out delay-600 hover:translate-x-1 hover:translate-y-1 hover:scale-105">
+                            <div><img src="{{ project.project_photo.url }}" class="overflow-hidden rounded-t-2xl"></div>
+                            <div class="px-8 py-4">
+                                
+                               <div><p class="text-slate-100 font-bold text-xl">{{ project.project_name }}</p></div>
+                               <div><p class="text-gray-400 text-xs mt-1">{{ project.proj_start_date }} - {{ project.proj_end_date }}</p></div>
+                               <div><p class="text-slate-100 text-md mt-2">{{ project.project_details }}</p></div>
+                               <br>
+                               <div class="grid grid-cols-2 gap-14">
+                                   <button class="border border-dashed border-2 rounded-full border-green-400 transition delay-100 hover:bg-green-400"><a href="{{ project.project_link }}" class="px-4 py-4 font-bold text-slate-100 transition delay-100 hover:text-black">Show project <i class="fa-solid fa-link fa-beat" style="color: #26a269;"></i></a></button>
+                                   <button class="border border-dashed border-4 rounded-full border-yellow-400 transition delay-100 hover:bg-yellow-400"><a href="{{ project.project_code_link }}" class="px-4 py-4 font-bold text-slate-100 transition delay-100 hover:text-black">Code <i class="fa-solid fa-link fa-beat" style="color: #e5a50a;"></i></a></button>
+                               </div>
                             </div>
-                        </div>
-
-                        <div class="text-slate-100 text-md mt-2 text-center" id="proj_detail{{ forloop.counter }}" hidden>
-                            {{ project.project_details }}
-                        </div>
-                        <br class="mb-2 mt-2">
+                        </div>                
                     {% endfor %}
+                
                 </div>
-                </div>
+                <br class="mb-10">
             {% endif %}
-            <br class="mb-10">
         </div>
     </div>
 <script type="text/javascript">
