@@ -1,4 +1,4 @@
-from .models import Profile, Experience, Project
+from .models import Profile, Experience, Project, Education
 from django import forms
 
 
@@ -47,10 +47,8 @@ class CreateProjectForm(forms.ModelForm):
 
     project_name = forms.CharField(widget=forms.TextInput(
         attrs={"class": "folio-form-input cols-span-2"}), label='Project Name')
-    proj_start_date = forms.DateField(input_formats=['%m-%Y'],
-                                 widget=forms.DateInput(
-        attrs={"type": "date", "class": "folio-form-input cols-span-2"}),
-                                 label='Start Date')
+    proj_start_date = forms.DateField(
+        input_formats=['%m-%Y'], label='Start Date')
     proj_end_date = forms.DateField(input_formats=['%m-%Y'],
                                widget=forms.DateInput(), label='End Date')
     project_details = forms.CharField(widget=forms.Textarea())
@@ -67,3 +65,24 @@ class CreateProjectForm(forms.ModelForm):
                   'project_link',
                   'project_code_link',
                   'project_photo')
+
+
+class CreateEducationForm(forms.ModelForm):
+
+    edu_end_date = forms.DateField(input_formats=['%m-%Y'], label='End Date')
+    school = forms.CharField(label='School Name')
+    degree = forms.CharField(label='Degree')
+    city = forms.CharField(label='City')
+    country = forms.CharField(label='Country')
+    grade = forms.CharField(label='Grade')
+
+    class Meta:
+        model = Education
+        fields = (
+            'school',
+            'edu_end_date',
+            'degree',
+            'city',
+            'country',
+            'grade'
+        )

@@ -141,6 +141,44 @@
                 </div>
                 <br class="mb-10">
             {% endif %}
+
+            {% if educations %}
+                <div class="flex justify-center">
+                    <div class="text-slate-100 text-4xl mt-10 underline underline-offset-8 decoration-4 decoration-indigo-500">
+                        Education
+                    </div>
+                </div>
+                <br class="mb-10">
+                <div class="flex justify-center">
+                    <div class="flex-col justify-center">
+                    {% for education in educations %}
+                        <div class="text-slate-100 text-2xl mt-2 text-center">
+                            {{ education.degree }}
+                        </div>
+                        <div class="text-slate-100 text-xl text-center">
+                            {{ education.school }}
+                        </div>
+                        <div class="text-slate-100 text-sm mt-2 text-center">
+                            {{ education.city }}, {{ education.country }}
+                        </div>
+                        <div class="text-gray-400 text-md mt-2 text-center">
+                            {{ education.edu_end_date }}
+                        </div>
+                        <div class="text-slate-100 text-md mt-2 text-center">
+                            {{ education.grade }}
+                        </div>
+
+
+                        {% if not forloop.last %}
+                            <div class="flex justify-center">
+                                <div class="w-1 h-20 border-2 border-indigo-500 rounded bg-indigo-500 mt-2 mb-2"></div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                </div>
+            {% endif %}
+            <br class="mb-10">
         </div>
     </div>
 <script type="text/javascript">

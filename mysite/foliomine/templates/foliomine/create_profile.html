@@ -74,6 +74,16 @@
                         <p type="button" name="button" class="flex justify-center text-label_white hover:text-black">+</p>
                     </div>
                 </div>
+                <div class="flex justify-center col-span-2" id="edu_title">
+                    <div>
+                        <p class="text-label_white text-2xl">Education</p>
+                    </div>
+                  </div>
+                  <div class="flex justify-center col-span-2" id="add-edu-more">
+                      <div class="w-20 border-2 border-dashed border-blue-500 rounded-2xl hover:bg-blue-400 cursor-pointer transition">
+                          <p type="button" name="button" class="flex justify-center text-label_white hover:text-black">+</p>
+                      </div>
+                  </div>
             </div>
         </div>
         <br>
@@ -165,6 +175,45 @@
             </div>
         </div>
     </div>
+
+    <!-- Education form -->
+
+    <div id="edu-form" hidden>
+        <div class="col-span-2" id="internal-edu-form">
+            <div class="grid grid-cols-2 gap-7">
+                <div class="col-span-2">
+                    <label class="text-label_white">{{edu_form.school.label}}</label>
+                    <br class="mb-2">
+                    <input type="text" class="folio-form-input w-full" name="school">
+                </div>
+                <div>
+                    <label class="text-label_white">{{edu_form.edu_end_date.label}}</label>
+                    <br class="mb-2">
+                    <input type="date" class="folio-form-input" name="edu_end_date">
+                </div>
+                <div class="">
+                    <label for="degree" class="text-label_white">{{edu_form.degree.label}}</label>
+                    <br class="mb-2">
+                    <input type="text" class="folio-form-input" name="degree">
+                </div>
+                <div>
+                    <label class="text-label_white">{{edu_form.city.label}}</label>
+                    <br class="mb-2">
+                    <input type="text" class="folio-form-input" name="city">
+                </div>
+                <div>
+                    <label class="text-label_white">{{edu_form.country.label}}</label>
+                    <br class="mb-2">
+                    <input type="text" class="folio-form-input" name="country">
+                </div>
+                <div class="col-span-2">
+                    <label class="text-label_white">{{edu_form.grade.label}}</label>
+                    <br class="mb-2">
+                    <input type="text" class="folio-form-input w-full" name="grade">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript">
@@ -191,5 +240,15 @@
         profile_form.insertBefore(internal_proj_form, add_proj_button)
     })
 
+    // Add mulitple educations
+    const add_edu_button = document.getElementById('add-edu-more')
+
+    add_edu_button.addEventListener('click', () => {
+        const profile_form = document.getElementById('profile-form')
+        const internal_edu_form = document.getElementById('internal-edu-form').cloneNode(true)
+        internal_edu_form.hidden = false
+        internal_edu_form.setAttribute('id', '')
+        profile_form.insertBefore(internal_edu_form, add_edu_button)
+    })
 </script>
 {% endblock %}

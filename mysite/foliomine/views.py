@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.forms import formset_factory
-from .forms import CreateProfileForm, CreateExperienceForm, CreateProjectForm
-from .models import Profile, Experience, Project
+from .forms import CreateProfileForm, CreateExperienceForm, CreateProjectForm, CreateEducationForm
+from .models import Profile, Experience, Project, Education
 
 
 def index(request):
@@ -17,9 +17,7 @@ def index(request):
 @login_required
 def create_profile(request):
     print(request.POST)
-    # experience_formset = formset_factory(CreateExperienceForm, extra=1)
-    # project_formset = formset_factory(CreateProjectForm, extra=1)
-    # project_forms = project_formset(request.POST, request.FILES)
+
     if request.method == 'POST':
         form = CreateProfileForm(request.POST, request.FILES)
         if form.is_valid():
@@ -83,16 +81,39 @@ def create_profile(request):
 
                 new_project.save()
 
+            # Saving educations
+            for i in range(len(request.POST.getlist('school'))):
+                school = request.POST.getlist('school')[i]
+                edu_end_date = request.POST.getlist('edu_end_date')[i]
+                degree = request.POST.getlist('degree')[i]
+                city = request.POST.getlist('city')[i]
+                country = request.POST.getlist('country')[i]
+                grade = request.POST.getlist('grade')[i]
+
+                new_education = Education(
+                    profile_id=new_profile,
+                    school=school,
+                    edu_end_date=edu_end_date,
+                    degree=degree,
+                    city=city,
+                    country=country,
+                    grade=grade
+                )
+
+                new_education.save()
+
             return redirect('index')
 
     form = CreateProfileForm()
     experience_form = CreateExperienceForm()
     project_form = CreateProjectForm()
+    education_form = CreateEducationForm()
     getRequest = True
     context = {
         'form': form,
         'experience_form': experience_form,
         'project_form': project_form,
+        'edu_form': education_form,
         'getRequest': getRequest
     }
     return render(request, 'foliomine/create_profile.html', context)
@@ -102,7 +123,9 @@ def displayProfile(request, profile_id):
     profile = Profile.objects.get(id=profile_id)
     experiences = Experience.objects.filter(profile_id=profile_id)
     projects = Project.objects.filter(profile_id=profile_id)
+    educations = Education.objects.filter(profile_id=profile_id)
 
+    edu_len = len(educations)
     proj_len = len(projects)
     exp_len = len(experiences)
     context = {
@@ -110,6 +133,8 @@ def displayProfile(request, profile_id):
         'experiences': experiences,
         'projects': projects,
         'proj_len': proj_len,
-        'exp_len': exp_len
+        'exp_len': exp_len,
+        'educations': educations,
+        'edu_len': edu_len
     }
     return render(request, 'foliomine/display_profile.html', context)
