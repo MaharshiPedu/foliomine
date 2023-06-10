@@ -123,7 +123,12 @@
                     {% for project in projects %}
                         
                         <div class="bg-login_blue rounded-2xl shadow-[18px_18px_0_rgb(22,22,22)] transition ease-in-out delay-600 hover:translate-x-1 hover:translate-y-1 hover:scale-105">
-                            <div><img src="{{ project.project_photo.url }}" class="overflow-hidden rounded-t-2xl"></div>
+
+                            {% if project.project_photo %}
+                                <div><img src="{{ project.project_photo.url }}" class="overflow-hidden rounded-t-2xl"></div>
+                            {% else %}
+                                <div><img src="/media/project_photos/computer-screen-code.jpg" class="overflow-hidden rounded-t-2xl"></div>
+                            {% endif %}
                             <div class="px-8 py-4">
                                 
                                <div><p class="text-slate-100 font-bold text-xl">{{ project.project_name }}</p></div>
