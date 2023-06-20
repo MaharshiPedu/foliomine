@@ -189,6 +189,7 @@ def edit_profile(request, profile_id):
             )
             new_experience.save()
         
+        #Updating profile
         for i in range(len(request.POST.getlist('project_name'))):
             if i < len(projects):
                 print(request.FILES.getlist('project_photo_'+str(i)))
@@ -227,6 +228,31 @@ def edit_profile(request, profile_id):
                     project_link=request.POST.getlist('project_link')[i],
                 )
             new_project.save()
+        
+        # Updating education
+        for i in range(len(request.POST.getlist('school'))):
+            if i < len(educations):
+                educations[i].school = request.POST.getlist('school')[i]
+                educations[i].edu_end_date = request.POST.getlist('edu_end_date')[i]
+                educations[i].degree = request.POST.getlist('degree')[i]
+                educations[i].city = request.POST.getlist('city')[i]
+                educations[i].country = request.POST.getlist('country')[i]
+                educations[i].grade = request.POST.getlist('grade')[i]
+
+                educations[i].save()
+                continue
+            
+            new_education = Education(
+                profile_id=profile,
+                edu_end_date=request.POST.getlist('edu_end_date')[i],
+                degree=request.POST.getlist('degree')[i],
+                city=request.POST.getlist('city')[i],
+                country=request.POST.getlist('country')[i],
+                grade=request.POST.getlist('grade')[i],
+                school=request.POST.getlist('school')[i]
+            )
+            new_education.save()
+            
 
     form = CreateProfileForm()
     experience_form = CreateExperienceForm()
