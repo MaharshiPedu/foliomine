@@ -54,7 +54,8 @@ class Profile(models.Model):
 
 class Experience(models.Model):
 
-    profile_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    id = models.AutoField(primary_key=True)
+    profile_id = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     exp_start_date = models.DateField(null=False)
     exp_end_date = models.DateField(null=False)
     job_profile = models.TextField(max_length=50, null=False)
@@ -70,7 +71,8 @@ class Experience(models.Model):
 
 class Education(models.Model):
 
-    profile_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    id = models.AutoField(primary_key=True)
+    profile_id = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     edu_end_date = models.DateField(null=False)
     degree = models.CharField(max_length=100, null=False)
     school = models.CharField(max_length=200, null=False)
@@ -87,7 +89,8 @@ class Education(models.Model):
 
 class Project(models.Model):
 
-    profile_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    id = models.AutoField(primary_key=True)
+    profile_id = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     proj_start_date = models.DateField(null=False)
     proj_end_date = models.DateField(null=False)
     project_name = models.CharField(max_length=100, null=False)
@@ -101,11 +104,13 @@ class Project(models.Model):
         db_table = "Project"
 
     def save(self, *args, **kwargs):
+        # print("----->>>>", self.project_photo.url)
         super().save()
         if self.project_photo:
             photo_url = MEDIA_ROOT[:len(MEDIA_ROOT) - 5] + self.project_photo.url
             img = Image.open(photo_url)
             img.save(photo_url)
 
-    def __str__(self):
-        return self.project_name
+    # def __str__(self):
+    #     return self.project_name
+
