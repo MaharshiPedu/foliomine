@@ -4,103 +4,115 @@
 <div class="flex justify-center">
     <form action="{% url 'edit_profile' profile_id %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="flex justify-center col-span-2">
-            <div id="">
+        <div class="bg-blue-900 rounded-2xl px-8 py-4">
+            <div class="flex justify-center">
                 <p class="text-label_white text-2xl">Profile</p>
             </div>
-        </div>
-
-        <div>
             <div class="grid grid-cols-2 gap-7" id="profile-form">
-                <div class="col-span-2">
-                    <label for="profile_name" class="text-label_white">{{form.profile_name.label}}</label>
-                    <br class="mb-2">
-                    <input type="text" name="profile_name" class="folio-form-input w-full" value="{{profile.profile_name}}">
-                </div>
-                <div>
-                    <label for="first_name" class="text-label_white">{{form.first_name.label}}</label>
-                    <br class="mb-2">
-                    <input type="text" name="first_name" class="folio-form-input" value="{{ profile.first_name }}">
-                </div>
-                <div>
-                    <label for="first_name" class="text-label_white">{{form.last_name.label}}</label>
-                    <br class="mb-2">
-                    <input type="text" name="last_name" class="folio-form-input" value="{{ profile.last_name }}">
-                </div>
-                <div class="col-span-2">
-                    <label for="about" class="text-label_white">{{form.about.label}}</label>
-                    <br class="mb-2">
-                    <textarea type="text" name="about" rows="4"
-                        class="w-full rounded-lg border-4 border-[#004aad] bg-website_blue text-label_white">{{ profile.about }}</textarea>
-                </div>
-                <div>
-                    <label for="github_link" class="text-label_white">{{form.github_link.label}}</label>
-                    <br class="mb-2">
-                    <input type="text" name="github_link" class="folio-form-input" value="{{ profile.github_link }}">
-                </div>
-                <div>
-                    <label for="linkedin_link" class="text-label_white">{{form.linkedin_link.label}}</label>
-                    <br class="mb-2">
-                    <input type="text" name="linkedin_link" class="folio-form-input" value="{{ profile.linkedin_link }}">
-                </div>
-                <div>
-                    <label for="twitter_link" class="text-label_white">{{form.twitter_link.label}}</label>
-                    <br class="mb-2">
-                    <input type="text" name="twitter_link" class="folio-form-input" value="{{ profile.twitter_link }}">
-                </div>
-                <div>
-                    <label for="profile_photo" class="text-label_white">{{form.profile_photo.label}}</label>
-                    <br class="mb-2">
-                    <input type="file" name="profile_photo" accept="image/*" class="text-sm text-yellow-400 file:border-0 file:rounded-3xl file:border-amber-700  file:bg-amber-800 file:text-gray-300 file:w-[6rem] file:py-3 hover:file:cursor-pointer hover:file:bg-amber-700 transition file:mr-2" value="{{ profile.profile_photo }}">
-                </div>
-
-                <!-- Experience -->
                 
+                    
+                    <div class="col-span-2">
+                        <label for="profile_name" class="text-label_white">{{form.profile_name.label}}</label>
+                        <br class="mb-2">
+                        <input type="text" name="profile_name" class="folio-form-input w-full" value="{{profile.profile_name}}">
+                    </div>
+                    <div>
+                        <label for="first_name" class="text-label_white">{{form.first_name.label}}</label>
+                        <br class="mb-2">
+                        <input type="text" name="first_name" class="folio-form-input" value="{{ profile.first_name }}">
+                    </div>
+                    <div>
+                        <label for="first_name" class="text-label_white">{{form.last_name.label}}</label>
+                        <br class="mb-2">
+                        <input type="text" name="last_name" class="folio-form-input" value="{{ profile.last_name }}">
+                    </div>
+                    <div class="col-span-2">
+                        <label for="about" class="text-label_white">{{form.about.label}}</label>
+                        <br class="mb-2">
+                        <textarea type="text" name="about" rows="4"
+                            class="w-full rounded-lg border-4 border-[#004aad] bg-website_blue text-label_white">{{ profile.about }}</textarea>
+                    </div>
+                    <div>
+                        <label for="github_link" class="text-label_white">{{form.github_link.label}}</label>
+                        <br class="mb-2">
+                        <input type="text" name="github_link" class="folio-form-input" value="{{ profile.github_link }}">
+                    </div>
+                    <div>
+                        <label for="linkedin_link" class="text-label_white">{{form.linkedin_link.label}}</label>
+                        <br class="mb-2">
+                        <input type="text" name="linkedin_link" class="folio-form-input" value="{{ profile.linkedin_link }}">
+                    </div>
+                    <div>
+                        <label for="twitter_link" class="text-label_white">{{form.twitter_link.label}}</label>
+                        <br class="mb-2">
+                        <input type="text" name="twitter_link" class="folio-form-input" value="{{ profile.twitter_link }}">
+                    </div>
+                    <div>
+                        <label for="profile_photo" class="text-label_white">{{form.profile_photo.label}}</label>
+                        <br class="mb-2">
+                        <input type="file" name="profile_photo" accept="image/*" class="text-sm text-yellow-400 file:border-0 file:rounded-3xl file:border-amber-700  file:bg-amber-800 file:text-gray-300 file:w-[6rem] file:py-3 hover:file:cursor-pointer hover:file:bg-amber-700 transition file:mr-2" value="{{ profile.profile_photo }}">
+                    </div>
+            </div>    
+
+            <!-- Experience -->
+
+            <div id="experience-form">
                 <div class="flex justify-center col-span-2" id="exp_title">
                   <div>
                       <p class="text-label_white text-2xl">Experiences</p>
                   </div>
                 </div>
                 {% for exp in experiences %}
-                    <div class="col-span-2">
-                        <div class="grid grid-cols-2 gap-7">
-                            <div>
-                                <label class="text-label_white">{{experience_form.company_name.label}}</label>
-                                <br class="mb-2">
-                                <input type="text" class="folio-form-input" name="company_name" value="{{ exp.company_name }}">
-                            </div>
-                            <div>
-                                <label class="text-label_white">{{experience_form.job_profile.label}}</label>
-                                <br class="mb-2">
-                                <input type="text" class="folio-form-input" name="job_profile" value="{{ exp.job_profile }}">
-                            </div>
-                            <div>
-                                <label class="text-label_white">{{experience_form.exp_start_date.label}}</label>
-                                <br class="mb-2">
-                                <input type="date" class="folio-form-input" name="exp_start_date" id="exp_start_date-{{forloop.counter}}">
-                            </div>
-                            <div>
-                                <label class="text-label_white">{{experience_form.exp_end_date.label}}</label>
-                                <br class="mb-2">
-                                <input type="date" class="folio-form-input" name="exp_end_date" id="exp_end_date-{{forloop.counter}}">
-                            </div>
-                            <div class="col-span-2">
-                                <label for="details" class="text-label_white">{{experience_form.details.label}}</label>
-                                <br class="mb-2">
-                                <textarea type="text" name="details" rows="4"
-                                    class="w-full rounded-lg border-4 border-[#004aad] bg-website_blue text-label_white">{{ exp.details }}</textarea>
+                    <div class="bg-website_blue rounded-2xl px-4 py-4" id="exp-div-{{forloop.counter}}">
+                        <div class="col-span-2 py-2">
+                            <div class="flex justify-end"><span class="text-red-700 bg-red-300 rounded-md transition hover:bg-red-400 px-2 hover:cursor-pointer" id="delete-exp-{{forloop.counter}}" onclick="deleteExperience('{{ forloop.counter }}')">x</span></div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="grid grid-cols-2 gap-7">
+                                <div>
+                                    <label class="text-label_white">{{experience_form.company_name.label}}</label>
+                                    <br class="mb-2">
+                                    <input type="text" class="folio-form-input" name="company_name_{{forloop.counter}}" value="{{ exp.company_name }}">
+                                </div>
+                                <div>
+                                    <label class="text-label_white">{{experience_form.job_profile.label}}</label>
+                                    <br class="mb-2">
+                                    <input type="text" class="folio-form-input" name="job_profile_{{forloop.counter}}" value="{{ exp.job_profile }}">
+                                </div>
+                                <div>
+                                    <label class="text-label_white">{{experience_form.exp_start_date.label}}</label>
+                                    <br class="mb-2">
+                                    <input type="date" class="folio-form-input" name="exp_start_date_{{forloop.counter}}" id="exp_start_date-{{forloop.counter}}">
+                                </div>
+                                <div>
+                                    <label class="text-label_white">{{experience_form.exp_end_date.label}}</label>
+                                    <br class="mb-2">
+                                    <input type="date" class="folio-form-input" name="exp_end_date_{{forloop.counter}}" id="exp_end_date-{{forloop.counter}}">
+                                </div>
+                                <div class="col-span-2">
+                                    <label for="details" class="text-label_white">{{experience_form.details.label}}</label>
+                                    <br class="mb-2">
+                                    <textarea type="text" name="details_{{forloop.counter}}" rows="4"
+                                        class="w-full rounded-lg border-4 border-[#004aad] bg-website_blue text-label_white">{{ exp.details }}</textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <br>
                 {% endfor %}
                 <div class="flex justify-center col-span-2" id="add-exp-more">
                     <div class="w-20 border-2 border-dashed border-blue-500 rounded-2xl hover:bg-blue-400 cursor-pointer transition">
                         <p type="button" name="button" class="flex justify-center text-label_white hover:text-black">+</p>
                     </div>
                 </div>
+                <div  hidden>
+                    <input type="text" id="last-exp-count" name="last_exp_count" value="">
+                </div>
+            </div>
 
-                <!-- Projects -->
+            <!-- Projects -->
 
+            <div id="project-form">
                 <div class="flex justify-center col-span-2" id="proj_title">
                   <div>
                       <p class="text-label_white text-2xl">Projects</p>
@@ -153,9 +165,10 @@
                         <p type="button" name="button" class="flex justify-center text-label_white hover:text-black">+</p>
                     </div>
                 </div>
+            </div>
 
                 <!-- Education -->
-
+            <div id="education-form">
                 <div class="flex justify-center col-span-2" id="edu_title">
                     <div>
                         <p class="text-label_white text-2xl">Education</p>
@@ -218,31 +231,34 @@
 
     <div id="exp-form" hidden>
         <div class="col-span-2" id="internal-exp-form">
-            <div class="grid grid-cols-2 gap-7">
+            <div class="grid grid-cols-2 gap-7 bg-website_blue rounded-2xl px-4 py-4">
+                <div class="col-span-2 py-2">
+                    <div class="flex justify-end"><span class="text-red-700 bg-red-300 rounded-md transition hover:bg-red-400 px-2 hover:cursor-pointer" id="delete-exp">x</span></div>
+                </div>
                 <div>
                     <label class="text-label_white">{{experience_form.company_name.label}}</label>
                     <br class="mb-2">
-                    <input type="text" class="folio-form-input" name="company_name">
+                    <input type="text" class="folio-form-input" name="company_name" id="company_name">
                 </div>
                 <div>
                     <label class="text-label_white">{{experience_form.job_profile.label}}</label>
                     <br class="mb-2">
-                    <input type="text" class="folio-form-input" name="job_profile">
+                    <input type="text" class="folio-form-input" name="job_profile" id="job_profile">
                 </div>
                 <div>
                     <label class="text-label_white">{{experience_form.exp_start_date.label}}</label>
                     <br class="mb-2">
-                    <input type="date" class="folio-form-input" name="exp_start_date">
+                    <input type="date" class="folio-form-input" name="exp_start_date" id="exp_start_date">
                 </div>
                 <div>
                     <label class="text-label_white">{{experience_form.exp_end_date.label}}</label>
                     <br class="mb-2">
-                    <input type="date" class="folio-form-input" name="exp_end_date">
+                    <input type="date" class="folio-form-input" name="exp_end_date" id="exp_end_date">
                 </div>
                 <div class="col-span-2">
                     <label for="details" class="text-label_white">{{experience_form.details.label}}</label>
                     <br class="mb-2">
-                    <textarea type="text" name="details" rows="4"
+                    <textarea type="text" name="details" id="details" rows="4"
                         class="w-full rounded-lg border-4 border-[#004aad] bg-website_blue text-label_white"></textarea>
                 </div>
             </div>
@@ -340,35 +356,77 @@
 
     // Adding multiple experiences
     const add_exp_button = document.getElementById('add-exp-more')
-
+    var exp_count = "{{exp_len_json}}"
+    var last_exp_count = document.getElementById('last-exp-count')
+    last_exp_count.setAttribute('value', exp_count)
+    last_exp_count.innerHTML = exp_count
     add_exp_button.addEventListener('click', () => {
-        const profile_form = document.getElementById('profile-form')
+        exp_count++
+        const experience_form = document.getElementById('experience-form')
         const internal_exp_form = document.getElementById('internal-exp-form').cloneNode(true)
+        const delete_exp = internal_exp_form.querySelector('#delete-exp')
+
+        // setting ids for individual fields
+        setId(internal_exp_form.querySelector('#company_name'), 'company_name', exp_count)
+        setId(internal_exp_form.querySelector('#job_profile'), 'job_profile', exp_count)
+        setId(internal_exp_form.querySelector('#exp_start_date'), 'exp_start_date', exp_count)
+        setId(internal_exp_form.querySelector('#exp_end_date'), 'exp_end_date', exp_count)
+        setId(internal_exp_form.querySelector('#details'), 'details', exp_count)
+
         internal_exp_form.hidden = false
-        internal_exp_form.setAttribute('id', '')
-        profile_form.insertBefore(internal_exp_form, add_exp_button)
+        internal_exp_form.setAttribute('id', 'exp-div-'+exp_count)
+        delete_exp.setAttribute('onclick', 'deleteExperience('+exp_count+')')
+        delete_exp.setAttribute('id', 'delete-exp-'+exp_count)
+        experience_form.insertBefore(internal_exp_form, add_exp_button)
+        last_exp_count.setAttribute('value', exp_count)
+        last_exp_count.innerHTML = exp_count
     })
+
+    // Delete experience
+    function deleteExperience(count) {
+        const exp = document.getElementById('exp-div-'+count)
+        if (count > "{{exp_len_json}}"){
+            for (let i = count+1; i <= exp_count; i++){
+                var exp_div = document.getElementById('exp-div-'+i)
+                setId(exp_div.querySelector('#company_name_'+(i)), 'company_name', i-1)
+                setId(exp_div.querySelector('#job_profile_'+(i)), 'job_profile', i-1)
+                setId(exp_div.querySelector('#exp_start_date_'+(i)), 'exp_start_date', i-1)
+                setId(exp_div.querySelector('#exp_end_date_'+(i)), 'exp_end_date', i-1)
+                setId(exp_div.querySelector('#details_'+(i)), 'details', i-1)
+                exp_div.setAttribute('id', 'exp-div-'+(i-1))
+            }
+            last_exp_count.setAttribute('value', --exp_count)
+            
+        }
+        exp.remove()
+    }
+
+    // Setting ids for individual fields before adding the node to form
+    function setId(node, field, count) {
+        node.setAttribute('name', field+'_'+count)
+        node.setAttribute('id', field+'_'+count)
+    }
 
     // Adding multiple projects
     const add_proj_button = document.getElementById('add-proj-more')
 
     add_proj_button.addEventListener('click', () => {
-        const profile_form = document.getElementById('profile-form')
+        const project_form = document.getElementById('project-form')
         const internal_proj_form = document.getElementById('internal-proj-form').cloneNode(true)
         internal_proj_form.hidden = false
         internal_proj_form.setAttribute('id', '')
-        profile_form.insertBefore(internal_proj_form, add_proj_button)
+        project_form.insertBefore(internal_proj_form, add_proj_button)
     })
 
     // Add mulitple educations
     const add_edu_button = document.getElementById('add-edu-more')
 
     add_edu_button.addEventListener('click', () => {
-        const profile_form = document.getElementById('profile-form')
+        const education_form = document.getElementById('education-form')
         const internal_edu_form = document.getElementById('internal-edu-form').cloneNode(true)
         internal_edu_form.hidden = false
         internal_edu_form.setAttribute('id', '')
-        profile_form.insertBefore(internal_edu_form, add_edu_button)
+        education_form.insertBefore(internal_edu_form, add_edu_button)
     })
 
     // fucntion to convert json string into html element

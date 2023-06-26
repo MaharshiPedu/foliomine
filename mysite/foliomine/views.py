@@ -169,31 +169,36 @@ def edit_profile(request, profile_id):
         profile.save()
 
         # Updating experience
-        for i in range(len(request.POST.getlist('company_name'))):
+        total_exp_count = int(request.POST.get('last_exp_count'))
+        for i in range(total_exp_count):
+            print("===>>>", request.POST.getlist('company_name_'+str(i+1)))
             if i < len(experiences):
-                experiences[i].exp_start_date = request.POST.getlist('exp_start_date')[i]
-                experiences[i].exp_end_date = request.POST.getlist('exp_end_date')[i]
-                experiences[i].job_profile = request.POST.getlist('job_profile')[i]
-                experiences[i].company_name = request.POST.getlist('company_name')[i]
-                experiences[i].details = request.POST.getlist('details')[i]
-                experiences[i].save()
+                if request.POST.getlist('job_profile_'+str(i+1)):
+                    experiences[i].exp_start_date = request.POST.getlist('exp_start_date_'+str(i+1))[0]
+                    experiences[i].exp_end_date = request.POST.getlist('exp_end_date_'+str(i+1))[0]
+                    experiences[i].job_profile = request.POST.getlist('job_profile_'+str(i+1))[0]
+                    experiences[i].company_name = request.POST.getlist('company_name_'+str(i+1))[0]
+                    experiences[i].details = request.POST.getlist('details_'+str(i+1))[0]
+                    experiences[i].save()
+                    print(str(i+1), "----- if exec", experiences[i])
+                else:
+                    print(str(i+1), "----- else exec", experiences[i])
+                    experiences[i].delete()
                 continue
 
             new_experience = Experience(
                 profile_id=profile,
-                company_name=request.POST.getlist('company_name')[i],
-                exp_start_date=request.POST.getlist('exp_start_date')[i],
-                exp_end_date=request.POST.getlist('exp_end_date')[i],
-                job_profile=request.POST.getlist('job_profile')[i],
-                details=request.POST.getlist('details')[i]
+                company_name=request.POST.getlist('company_name_'+str(i+1))[0],
+                exp_start_date=request.POST.getlist('exp_start_date_'+str(i+1))[0],
+                exp_end_date=request.POST.getlist('exp_end_date_'+str(i+1))[0],
+                job_profile=request.POST.getlist('job_profile_'+str(i+1))[0],
+                details=request.POST.getlist('details_'+str(i+1))[0]
             )
             new_experience.save()
         
         #Updating profile
         for i in range(len(request.POST.getlist('project_name'))):
             if i < len(projects):
-                print(request.FILES.getlist('project_photo_'+str(i)))
-                print(projects[i])
                 projects[i].project_name = request.POST.getlist('project_name')[i]
                 projects[i].proj_start_date = request.POST.getlist('proj_start_date')[i]
                 projects[i].proj_end_date = request.POST.getlist('proj_end_date')[i]
@@ -252,7 +257,8 @@ def edit_profile(request, profile_id):
                 school=request.POST.getlist('school')[i]
             )
             new_education.save()
-            
+        
+        return redirect('display_profile', profile_id=profile.id)
 
     form = CreateProfileForm()
     experience_form = CreateExperienceForm()
