@@ -183,37 +183,42 @@
                     </div>
                 </div>
                 {% for edu in educations %}
-                    <div class="col-span-2">
-                        <div class="grid grid-cols-2 gap-7">
-                            <div class="col-span-2">
-                                <label class="text-label_white">{{edu_form.school.label}}</label>
-                                <br class="mb-2">
-                                <input type="text" class="folio-form-input w-full" name="school" value="{{edu.school}}">
-                            </div>
-                            <div>
-                                <label class="text-label_white">{{edu_form.edu_end_date.label}}</label>
-                                <br class="mb-2">
-                                <input type="date" class="folio-form-input" name="edu_end_date" id="edu_end_date-{{forloop.counter}}">
-                            </div>
-                            <div class="">
-                                <label for="degree" class="text-label_white">{{edu_form.degree.label}}</label>
-                                <br class="mb-2">
-                                <input type="text" class="folio-form-input" name="degree" value="{{edu.degree}}">
-                            </div>
-                            <div>
-                                <label class="text-label_white">{{edu_form.city.label}}</label>
-                                <br class="mb-2">
-                                <input type="text" class="folio-form-input" name="city" value="{{edu.city}}">
-                            </div>
-                            <div>
-                                <label class="text-label_white">{{edu_form.country.label}}</label>
-                                <br class="mb-2">
-                                <input type="text" class="folio-form-input" name="country" value="{{edu.country}}">
-                            </div>
-                            <div class="col-span-2">
-                                <label class="text-label_white">{{edu_form.grade.label}}</label>
-                                <br class="mb-2">
-                                <input type="text" class="folio-form-input w-full" name="grade" value="{{edu.grade}}">
+                    <div class="bg-website_blue rounded-2xl px-4 py-4" id="edu-div-{{forloop.counter}}">
+                        <div class="col-span-2 py-2">
+                            <div class="flex justify-end"><span class="text-red-700 bg-red-300 rounded-md transition hover:bg-red-400 px-2 hover:cursor-pointer" id="delete-edu-{{forloop.counter}}" onclick="deleteEducation('{{ forloop.counter }}')">x</span></div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="grid grid-cols-2 gap-7">
+                                <div class="col-span-2">
+                                    <label class="text-label_white">{{edu_form.school.label}}</label>
+                                    <br class="mb-2">
+                                    <input type="text" class="folio-form-input w-full" name="school_{{forloop.counter}}" value="{{edu.school}}">
+                                </div>
+                                <div>
+                                    <label class="text-label_white">{{edu_form.edu_end_date.label}}</label>
+                                    <br class="mb-2">
+                                    <input type="date" class="folio-form-input" name="edu_end_date_{{forloop.counter}}" id="edu_end_date-{{forloop.counter}}">
+                                </div>
+                                <div class="">
+                                    <label for="degree" class="text-label_white">{{edu_form.degree.label}}</label>
+                                    <br class="mb-2">
+                                    <input type="text" class="folio-form-input" name="degree_{{forloop.counter}}" value="{{edu.degree}}">
+                                </div>
+                                <div>
+                                    <label class="text-label_white">{{edu_form.city.label}}</label>
+                                    <br class="mb-2">
+                                    <input type="text" class="folio-form-input" name="city_{{forloop.counter}}" value="{{edu.city}}">
+                                </div>
+                                <div>
+                                    <label class="text-label_white">{{edu_form.country.label}}</label>
+                                    <br class="mb-2">
+                                    <input type="text" class="folio-form-input" name="country_{{forloop.counter}}" value="{{edu.country}}">
+                                </div>
+                                <div class="col-span-2">
+                                    <label class="text-label_white">{{edu_form.grade.label}}</label>
+                                    <br class="mb-2">
+                                    <input type="text" class="folio-form-input w-full" name="grade_{{forloop.counter}}" value="{{edu.grade}}">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -222,6 +227,9 @@
                     <div class="w-20 border-2 border-dashed border-blue-500 rounded-2xl hover:bg-blue-400 cursor-pointer transition">
                         <p type="button" name="button" class="flex justify-center text-label_white hover:text-black">+</p>
                     </div>
+                </div>
+                <div  hidden>
+                    <input type="text" id="last-edu-count" name="last_edu_count" value="">
                 </div>
             </div>
         </div>
@@ -233,6 +241,7 @@
                 <p class="ml-3 mr-3 mt-2 mb-2">Save</p>
             </button>
         </div>
+        <br>
     </form>
 
     <!-- Experience form -->
@@ -325,36 +334,39 @@
 
     <div id="edu-form" hidden>
         <div class="col-span-2" id="internal-edu-form">
-            <div class="grid grid-cols-2 gap-7">
+            <div class="grid grid-cols-2 gap-7 bg-website_blue rounded-2xl px-4 py-4">
+                <div class="col-span-2 py-2">
+                    <div class="flex justify-end"><span class="text-red-700 bg-red-300 rounded-md transition hover:bg-red-400 px-2 hover:cursor-pointer" id="delete-edu">x</span></div>
+                </div>
                 <div class="col-span-2">
                     <label class="text-label_white">{{edu_form.school.label}}</label>
                     <br class="mb-2">
-                    <input type="text" class="folio-form-input w-full" name="school">
+                    <input type="text" class="folio-form-input w-full" name="school" id="school">
                 </div>
                 <div>
                     <label class="text-label_white">{{edu_form.edu_end_date.label}}</label>
                     <br class="mb-2">
-                    <input type="date" class="folio-form-input" name="edu_end_date">
+                    <input type="date" class="folio-form-input" name="edu_end_date" id="edu_end_date">
                 </div>
                 <div class="">
                     <label for="degree" class="text-label_white">{{edu_form.degree.label}}</label>
                     <br class="mb-2">
-                    <input type="text" class="folio-form-input" name="degree">
+                    <input type="text" class="folio-form-input" name="degree" id="degree">
                 </div>
                 <div>
                     <label class="text-label_white">{{edu_form.city.label}}</label>
                     <br class="mb-2">
-                    <input type="text" class="folio-form-input" name="city">
+                    <input type="text" class="folio-form-input" name="city" id="city">
                 </div>
                 <div>
                     <label class="text-label_white">{{edu_form.country.label}}</label>
                     <br class="mb-2">
-                    <input type="text" class="folio-form-input" name="country">
+                    <input type="text" class="folio-form-input" name="country" id="country">
                 </div>
                 <div class="col-span-2">
                     <label class="text-label_white">{{edu_form.grade.label}}</label>
                     <br class="mb-2">
-                    <input type="text" class="folio-form-input w-full" name="grade">
+                    <input type="text" class="folio-form-input w-full" name="grade" id="grade">
                 </div>
             </div>
         </div>
@@ -401,12 +413,15 @@
         if (count > "{{exp_len_json}}"){
             for (let i = count+1; i <= exp_count; i++){
                 var exp_div = document.getElementById('exp-div-'+i)
+                var delete_exp = document.getElementById('delete-exp-'+i)
                 setId(exp_div.querySelector('#company_name_'+(i)), 'company_name', i-1)
                 setId(exp_div.querySelector('#job_profile_'+(i)), 'job_profile', i-1)
                 setId(exp_div.querySelector('#exp_start_date_'+(i)), 'exp_start_date', i-1)
                 setId(exp_div.querySelector('#exp_end_date_'+(i)), 'exp_end_date', i-1)
                 setId(exp_div.querySelector('#details_'+(i)), 'details', i-1)
                 exp_div.setAttribute('id', 'exp-div-'+(i-1))
+                delete_exp.setAttribute('id', 'delete-exp-'+(i-1))
+                delete_exp.setAttribute('onclick', 'deleteExperience('+(i-1)+')')
             }
             last_exp_count.setAttribute('value', --exp_count)
             
@@ -459,6 +474,7 @@
         if (count > "{{proj_len_json}}"){
             for (let i = count+1; i <= proj_count; i++){
                 var proj_div = document.getElementById('proj-div-'+i)
+                var delete_proj = document.getElementById('delete-proj-'+i)
                 setId(proj_div.querySelector('#proj_start_date_'+(i)), 'proj_start_date', i-1)
                 setId(proj_div.querySelector('#proj_end_date_'+(i)), 'proj_end_date', i-1)
                 setId(proj_div.querySelector('#project_name_'+(i)), 'project_name', i-1)
@@ -467,6 +483,8 @@
                 setId(proj_div.querySelector('#project_link_'+(i)), 'project_link', i-1)
                 // setId(proj_div.querySelector('#project_photo_'+(i)), 'project_photo', i-1)
                 proj_div.setAttribute('id', 'proj-div-'+(i-1))
+                delete_proj.setAttribute('id', 'delete-proj-'+(i-1))
+                delete_proj.setAttribute('onclick', 'deleteProject('+(i-1)+')')
             }
             last_proj_count.setAttribute('value', --proj_count)
             
@@ -480,16 +498,66 @@
         node.setAttribute('id', field+'_'+count)
     }
 
+    /*   Code for Educations   */
+
     // Add mulitple educations
     const add_edu_button = document.getElementById('add-edu-more')
+    var edu_count = "{{edu_len_json}}"
+    var last_edu_count = document.getElementById('last-edu-count')
+    last_edu_count.setAttribute('value', edu_count)
+    last_edu_count.innerHTML = edu_count
 
     add_edu_button.addEventListener('click', () => {
+        edu_count++
         const education_form = document.getElementById('education-form')
         const internal_edu_form = document.getElementById('internal-edu-form').cloneNode(true)
+        const delete_edu = internal_edu_form.querySelector('#delete-edu')
+
+        // setting ids for individual fields
+        setId(internal_edu_form.querySelector('#edu_end_date'), 'edu_end_date', edu_count)
+        setId(internal_edu_form.querySelector('#degree'), 'degree', edu_count)
+        setId(internal_edu_form.querySelector('#school'), 'school', edu_count)
+        setId(internal_edu_form.querySelector('#city'), 'city', edu_count)
+        setId(internal_edu_form.querySelector('#country'), 'country', edu_count)
+        setId(internal_edu_form.querySelector('#grade'), 'grade', edu_count)
+
         internal_edu_form.hidden = false
-        internal_edu_form.setAttribute('id', '')
+        internal_edu_form.setAttribute('id', 'edu-div-'+edu_count)
+        delete_edu.setAttribute('onclick', 'deleteEducation('+edu_count+')')
+        delete_edu.setAttribute('id', 'delete-edu-'+edu_count)
         education_form.insertBefore(internal_edu_form, add_edu_button)
+        last_edu_count.setAttribute('value', edu_count)
+        last_edu_count.innerHTML = edu_count
     })
+
+    // Delete education
+    function deleteEducation(count) {
+        const edu = document.getElementById('edu-div-'+count)
+        if (count > "{{edu_len_json}}"){
+            for (let i = count+1; i <= edu_count; i++){
+                var edu_div = document.getElementById('edu-div-'+i)
+                var delete_edu = document.getElementById('delete-edu-'+i)
+                setId(edu_div.querySelector('#edu_end_date_'+(i)), 'edu_end_date', i-1)
+                setId(edu_div.querySelector('#degree_'+(i)), 'degree', i-1)
+                setId(edu_div.querySelector('#school_'+(i)), 'school', i-1)
+                setId(edu_div.querySelector('#city_'+(i)), 'city', i-1)
+                setId(edu_div.querySelector('#country_'+(i)), 'country', i-1)
+                setId(edu_div.querySelector('#grade_'+(i)), 'grade', i-1)
+                edu_div.setAttribute('id', 'edu-div-'+(i-1))
+                delete_edu.setAttribute('id', 'delete-edu-'+(i-1))
+                delete_edu.setAttribute('onclick', 'deleteEducation('+(i-1)+')')
+            }
+            last_edu_count.setAttribute('value', --edu_count)
+            
+        }
+        edu.remove()
+    }
+
+    // // Setting ids for individual fields before adding the node to form
+    // function setId(node, field, count) {
+    //     node.setAttribute('name', field+'_'+count)
+    //     node.setAttribute('id', field+'_'+count)
+    // }
 
     // fucntion to convert json string into html element
     function convertToHTML(model_json) {
