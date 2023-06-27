@@ -171,7 +171,6 @@ def edit_profile(request, profile_id):
         # Updating experience
         total_exp_count = int(request.POST.get('last_exp_count'))
         for i in range(total_exp_count):
-            print("===>>>", request.POST.getlist('company_name_'+str(i+1)))
             if i < len(experiences):
                 if request.POST.getlist('job_profile_'+str(i+1)):
                     experiences[i].exp_start_date = request.POST.getlist('exp_start_date_'+str(i+1))[0]
@@ -180,9 +179,7 @@ def edit_profile(request, profile_id):
                     experiences[i].company_name = request.POST.getlist('company_name_'+str(i+1))[0]
                     experiences[i].details = request.POST.getlist('details_'+str(i+1))[0]
                     experiences[i].save()
-                    print(str(i+1), "----- if exec", experiences[i])
                 else:
-                    print(str(i+1), "----- else exec", experiences[i])
                     experiences[i].delete()
                 continue
 
@@ -196,41 +193,44 @@ def edit_profile(request, profile_id):
             )
             new_experience.save()
         
-        #Updating profile
-        for i in range(len(request.POST.getlist('project_name'))):
+        #Updating project
+        total_proj_count = int(request.POST.get('last_proj_count'))
+        for i in range(total_proj_count):
             if i < len(projects):
-                projects[i].project_name = request.POST.getlist('project_name')[i]
-                projects[i].proj_start_date = request.POST.getlist('proj_start_date')[i]
-                projects[i].proj_end_date = request.POST.getlist('proj_end_date')[i]
-                projects[i].project_details = request.POST.getlist('project_details')[i]
-                projects[i].project_code_link = request.POST.getlist('project_code_link')[i]
-                projects[i].project_link = request.POST.getlist('project_link')[i]
-                if len(request.FILES.getlist('project_photo_'+str(i+1))) > 0:
-                    projects[i].project_photo = request.FILES.getlist('project_photo_'+str(i+1))[0]
-                    
-                projects[i].save()
+                if request.POST.getlist('project_name_'+str(i+1)):
+                    projects[i].project_name = request.POST.getlist('project_name_'+str(i+1))[0]
+                    projects[i].proj_start_date = request.POST.getlist('proj_start_date_'+str(i+1))[0]
+                    projects[i].proj_end_date = request.POST.getlist('proj_end_date_'+str(i+1))[0]
+                    projects[i].project_details = request.POST.getlist('project_details_'+str(i+1))[0]
+                    projects[i].project_code_link = request.POST.getlist('project_code_link_'+str(i+1))[0]
+                    projects[i].project_link = request.POST.getlist('project_link_'+str(i+1))[0]
+                    if len(request.FILES.getlist('project_photo_'+str(i+1))) > 0:
+                        projects[i].project_photo = request.FILES.getlist('project_photo_'+str(i+1))[0]
+                    projects[i].save()
+                else:
+                    projects[i].delete()
                 continue
             
             if len(request.FILES.getlist('project_photo')) > 0:
                 new_project = Project(
                     profile_id=profile,
-                    project_name=request.POST.getlist('project_name')[i],
-                    proj_start_date=request.POST.getlist('proj_start_date')[i],
-                    proj_end_date=request.POST.getlist('proj_end_date')[i],
-                    project_details=request.POST.getlist('project_details')[i],
-                    project_code_link=request.POST.getlist('project_code_link')[i],
-                    project_link=request.POST.getlist('project_link')[i],
+                    project_name=request.POST.getlist('project_name_'+str(i+1))[0],
+                    proj_start_date=request.POST.getlist('proj_start_date_'+str(i+1))[0],
+                    proj_end_date=request.POST.getlist('proj_end_date_'+str(i+1))[0],
+                    project_details=request.POST.getlist('project_details_'+str(i+1))[0],
+                    project_code_link=request.POST.getlist('project_code_link_'+str(i+1))[0],
+                    project_link=request.POST.getlist('project_link_'+str(i+1))[0],
                     project_photo=request.FILES.getlist('project_photo')[len(projects) - i]
                 )
             else:
                 new_project = Project(
                     profile_id=profile,
-                    project_name=request.POST.getlist('project_name')[i],
-                    proj_start_date=request.POST.getlist('proj_start_date')[i],
-                    proj_end_date=request.POST.getlist('proj_end_date')[i],
-                    project_details=request.POST.getlist('project_details')[i],
-                    project_code_link=request.POST.getlist('project_code_link')[i],
-                    project_link=request.POST.getlist('project_link')[i],
+                    project_name=request.POST.getlist('project_name_'+str(i+1))[0],
+                    proj_start_date=request.POST.getlist('proj_start_date_'+str(i+1))[0],
+                    proj_end_date=request.POST.getlist('proj_end_date_'+str(i+1))[0],
+                    project_details=request.POST.getlist('project_details_'+str(i+1))[0],
+                    project_code_link=request.POST.getlist('project_code_link_'+str(i+1))[0],
+                    project_link=request.POST.getlist('project_link_'+str(i+1))[0],
                 )
             new_project.save()
         
