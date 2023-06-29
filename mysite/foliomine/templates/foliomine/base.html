@@ -26,23 +26,33 @@
             {% if user.is_authenticated %}
                 {% if not getRequest %}
                     <li class="mx-4 my-6 md:my-0">
-                        <a href="{% url 'create_profile' %}" class="text-green-300 text-lg font-semibold">New Profile</a>
+                        <a href="{% url 'create_profile' %}" class="text-green-300 text-lg font-semibold border-2 border-green-600 px-4 py-2 rounded-2xl transition duration-200 hover:bg-green-600 hover:text-label_white">New Profile</a>
                     </li>
                 {% endif %}
                 <li class="mx-4 my-6 md:my-0">
-                    <a href="{% url 'logout' %}" class="text-red-300 text-lg font-semibold">Logout</a>
+                    <a href="{% url 'logout' %}" class="text-red-300 text-lg font-semibold border-2 border-red-600 px-4 py-2 rounded-2xl transition duration-200 hover:bg-red-600 hover:text-label_white">Logout</a>
                 </li>
             {% else %}
                 <li class="mx-4 my-6 md:my-0">
-                    <a href="{% url 'login' %}" class="text-red-300 text-lg font-semibold">Login</a>
+                    <a href="{% url 'login' %}" class="text-pink-300 text-lg font-semibold border-2 border-pink-600 px-4 py-2 rounded-2xl transition duration-200 hover:bg-pink-600 hover:text-label_white">Login</a>
                 </li>
                 <li class="mx-4 my-6 md:my-0">
-                    <a href="{% url 'register_user' %}" class="text-green-300 text-lg font-semibold">Register</a>
+                    <a href="{% url 'register_user' %}" class="text-green-300 text-lg font-semibold border-2 border-green-600 px-4 py-2 rounded-2xl transition duration-200 hover:bg-green-600 hover:text-label_white">Register</a>
                 </li>
             {% endif %}
         </ul>
     </nav>
-
+    {% if not user.is_authenticated %}
+        <div class="flex justify-center mt-36">
+            <p class="text-label_white text-7xl font-dm_sans">Join <span class="font-jetbrains_mono font-semibold">foliomine</span> today!</p>
+        </div>
+        <br>
+        <br>
+        <div class="flex flex-row justify-center">
+            <a href="{% url 'login' %}" class="text-label_white font-dm_sans text-2xl font-semibold border-2 border-pink-600 bg-pink-600 px-4 py-2 rounded-2xl transition duration-200 hover:bg-transparent hover:text-pink-300">Login</a>
+            <a href="{% url 'register_user' %}" class="text-label_white font-dm_sans ml-6 text-2xl font-semibold border-2 border-green-600 bg-green-600 px-4 py-2 rounded-2xl transition duration-200 hover:bg-transparent hover:text-green-300">Register</a>
+        </div>
+    {% endif %}
     <br><br>
     <div>
         {% if messages %}

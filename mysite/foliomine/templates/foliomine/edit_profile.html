@@ -4,7 +4,7 @@
 <div class="flex justify-center">
     <form action="{% url 'edit_profile' profile_id %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="bg-blue-900 rounded-2xl px-8 py-4">
+        <div class="bg-sky-400/5 rounded-2xl px-8 py-4 shadow-2xl">
             <div class="flex justify-center">
                 <p class="text-label_white text-2xl">Profile</p>
             </div>
@@ -53,6 +53,7 @@
                         <input type="file" name="profile_photo" accept="image/*" class="text-sm text-yellow-400 file:border-0 file:rounded-3xl file:border-amber-700  file:bg-amber-800 file:text-gray-300 file:w-[6rem] file:py-3 hover:file:cursor-pointer hover:file:bg-amber-700 transition file:mr-2" value="{{ profile.profile_photo }}">
                     </div>
             </div>    
+            <br>
 
             <!-- Experience -->
 
@@ -62,6 +63,7 @@
                       <p class="text-label_white text-2xl">Experiences</p>
                   </div>
                 </div>
+                <br>
                 {% for exp in experiences %}
                     <div class="bg-website_blue rounded-2xl px-4 py-4" id="exp-div-{{forloop.counter}}">
                         <div class="col-span-2 py-2">
@@ -100,11 +102,13 @@
                     </div>
                     <br>
                 {% endfor %}
+                <br id="br-exp">
                 <div class="flex justify-center col-span-2" id="add-exp-more">
                     <div class="w-20 border-2 border-dashed border-blue-500 rounded-2xl hover:bg-blue-400 cursor-pointer transition">
                         <p type="button" name="button" class="flex justify-center text-label_white hover:text-black">+</p>
                     </div>
                 </div>
+                <br>
                 <div  hidden>
                     <input type="text" id="last-exp-count" name="last_exp_count" value="">
                 </div>
@@ -118,6 +122,7 @@
                       <p class="text-label_white text-2xl">Projects</p>
                   </div>
                 </div>
+                <br>
                 {% for proj in projects %}
                     <div class="bg-website_blue rounded-2xl px-4 py-4" id="proj-div-{{forloop.counter}}">
                         <div class="col-span-2 py-2">
@@ -164,12 +169,15 @@
                             </div>
                         </div>
                     </div>
+                    <br>
                 {% endfor %}
+                <br id="br-proj">
                 <div class="flex justify-center col-span-2" id="add-proj-more">
                     <div class="w-20 border-2 border-dashed border-blue-500 rounded-2xl hover:bg-blue-400 cursor-pointer transition">
                         <p type="button" name="button" class="flex justify-center text-label_white hover:text-black">+</p>
                     </div>
                 </div>
+                <br>
                 <div  hidden>
                     <input type="text" id="last-proj-count" name="last_proj_count" value="">
                 </div>
@@ -182,6 +190,7 @@
                         <p class="text-label_white text-2xl">Education</p>
                     </div>
                 </div>
+                <br>
                 {% for edu in educations %}
                     <div class="bg-website_blue rounded-2xl px-4 py-4" id="edu-div-{{forloop.counter}}">
                         <div class="col-span-2 py-2">
@@ -222,12 +231,15 @@
                             </div>
                         </div>
                     </div>
+                    <br>
                 {% endfor %}
+                <br id="br-edu">
                 <div class="flex justify-center col-span-2" id="add-edu-more">
                     <div class="w-20 border-2 border-dashed border-blue-500 rounded-2xl hover:bg-blue-400 cursor-pointer transition">
                         <p type="button" name="button" class="flex justify-center text-label_white hover:text-black">+</p>
                     </div>
                 </div>
+                <br>
                 <div  hidden>
                     <input type="text" id="last-edu-count" name="last_edu_count" value="">
                 </div>
@@ -237,8 +249,8 @@
         
         <br>
         <div class="flex justify-center">
-            <button type="submit" class="border-2 rounded-2xl border-yellow-200 text-yellow-200">
-                <p class="ml-3 mr-3 mt-2 mb-2">Save</p>
+            <button type="submit" class="border-2 rounded-2xl border-yellow-600 text-label_white bg-yellow-600 transition duration-200 hover:bg-transparent hover:text-yellow-600 hover:border-yellow-600">
+                <p class="ml-3 mr-3 mt-2 mb-2 px-4">Save</p>
             </button>
         </div>
         <br>
@@ -390,6 +402,7 @@
         const experience_form = document.getElementById('experience-form')
         const internal_exp_form = document.getElementById('internal-exp-form').cloneNode(true)
         const delete_exp = internal_exp_form.querySelector('#delete-exp')
+        const br_exp = document.getElementById('br-exp')
 
         // setting ids for individual fields
         setId(internal_exp_form.querySelector('#company_name'), 'company_name', exp_count)
@@ -402,7 +415,7 @@
         internal_exp_form.setAttribute('id', 'exp-div-'+exp_count)
         delete_exp.setAttribute('onclick', 'deleteExperience('+exp_count+')')
         delete_exp.setAttribute('id', 'delete-exp-'+exp_count)
-        experience_form.insertBefore(internal_exp_form, add_exp_button)
+        experience_form.insertBefore(internal_exp_form, br_exp)
         last_exp_count.setAttribute('value', exp_count)
         last_exp_count.innerHTML = exp_count
     })
@@ -422,6 +435,7 @@
                 exp_div.setAttribute('id', 'exp-div-'+(i-1))
                 delete_exp.setAttribute('id', 'delete-exp-'+(i-1))
                 delete_exp.setAttribute('onclick', 'deleteExperience('+(i-1)+')')
+                
             }
             last_exp_count.setAttribute('value', --exp_count)
             
@@ -449,6 +463,7 @@
         const project_form = document.getElementById('project-form')
         const internal_proj_form = document.getElementById('internal-proj-form').cloneNode(true)
         const delete_proj = internal_proj_form.querySelector('#delete-proj')
+        const br_proj = document.getElementById('br-proj')
 
         // setting ids for individual fields
         setId(internal_proj_form.querySelector('#proj_start_date'), 'proj_start_date', proj_count)
@@ -463,7 +478,7 @@
         internal_proj_form.setAttribute('id', 'proj-div-'+proj_count)
         delete_proj.setAttribute('onclick', 'deleteProject('+proj_count+')')
         delete_proj.setAttribute('id', 'delete-proj-'+proj_count)
-        project_form.insertBefore(internal_proj_form, add_proj_button)
+        project_form.insertBefore(internal_proj_form, br_proj)
         last_proj_count.setAttribute('value', proj_count)
         last_proj_count.innerHTML = proj_count
     })
@@ -512,6 +527,7 @@
         const education_form = document.getElementById('education-form')
         const internal_edu_form = document.getElementById('internal-edu-form').cloneNode(true)
         const delete_edu = internal_edu_form.querySelector('#delete-edu')
+        const br_edu = document.getElementById('br-edu')
 
         // setting ids for individual fields
         setId(internal_edu_form.querySelector('#edu_end_date'), 'edu_end_date', edu_count)
@@ -525,7 +541,7 @@
         internal_edu_form.setAttribute('id', 'edu-div-'+edu_count)
         delete_edu.setAttribute('onclick', 'deleteEducation('+edu_count+')')
         delete_edu.setAttribute('id', 'delete-edu-'+edu_count)
-        education_form.insertBefore(internal_edu_form, add_edu_button)
+        education_form.insertBefore(internal_edu_form, br_edu)
         last_edu_count.setAttribute('value', edu_count)
         last_edu_count.innerHTML = edu_count
     })

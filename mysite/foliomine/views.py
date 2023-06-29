@@ -318,6 +318,12 @@ def edit_profile(request, profile_id):
     return render(request, 'foliomine/edit_profile.html', context)
 
 
+@login_required
+def delete_profile(request, profile_id):
+    profile = Profile.objects.get(id=profile_id)
+    profile.delete()
+    return redirect('index')
+
 # To handle the serialization of date object from experience.
 class CustomJSONEncoder(JSONEncoder):
 

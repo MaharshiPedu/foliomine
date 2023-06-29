@@ -2,36 +2,75 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-    <div class="flex flex-col relative m-auto w-96 rounded-2xl bg-[#1a2434] drop-shadow-2xl">
-        <table class="table-auto text-left border-collapse">
-            <thead>
-                <tr>
-                    <th class="text-lg py-2 pl-3 text-blue-300">Profile Name</th>
-                    <th class="text-lg py-2 pl-3 text-blue-300">Edit</th>
-                    <th class="text-lg py-2 pl-3 text-blue-300">Share</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for profile in profiles %}
-                    <tr>
-                        <td class="text-md py-3 pl-3 text-slate-300">
-                            <a href="{% url 'display_profile' profile.id %}">{{profile.profile_name}}</a>
-                        </td>
-
-                        <td class="pl-3">
-                            <a href=" {% url 'edit_profile' profile.id %}">
-                                <img src="https://cdn-icons-png.flaticon.com/512/1160/1160515.png" alt="edit-button" title="Edit Button" class="w-5 h-5">
-                            </a>
-                        </td>
-                        
-                        <td class="pl-3">
-                            <img src="https://cdn-icons-png.flaticon.com/512/719/719731.png" alt="edit-button" title="Edit Button" class="w-5 h-5">
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <div class="flex justify-center mb-16">
+        <p class="font-dm_sans text-6xl text-label_white">Dashboard</p>
     </div>
+    {% if profiles %}
+        <div class="flex flex-col relative mx-80 w-auto rounded-2xl bg-[#1a2434] drop-shadow-2xl">
+            <table class="table-auto text-left border-collapse">
+                <thead>
+                    <tr>
+                        <th class="text-lg py-2 pl-3 text-blue-300">Profile Name</th>
+                        <th class="text-lg py-2 pl-3 text-blue-300">Edit</th>
+                        <th class="text-lg py-2 pl-3 text-blue-300">Share</th>
+                        <th class="text-lg py-2 pl-3 text-blue-300">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for profile in profiles %}
+                        <tr>
+                            <td class="text-md py-3 pl-3 text-slate-300">
+                                <a href="{% url 'display_profile' profile.id %}" id="display-profile-{{forloop.counter}}">{{profile.profile_name}}</a>
+                            </td>
+
+                            <td class="pl-3">
+                                <a href=" {% url 'edit_profile' profile.id %}">
+                                    <img src="https://img.icons8.com/?size=512&id=42799&format=png" alt="edit-button" title="Edit Button" class="w-6 h-6">
+                                </a>
+                            </td>
+                            
+                            <td class="pl-3" onmouseover="tooltipAppear('{{forloop.counter}}')" onmouseout="tooltipDisappear('{{forloop.counter}}')" id="copy-button-{{forloop.counter}}" onclick="copyLink('{{forloop.counter}}')">
+                                <div>
+                                    <span id="tooltip-{{forloop.counter}}" class="text-xs absolute z-1 border rounded-xl bg-yellow-400 border-yellow-400 px-2 cursor-pointer transition-opacity duration-400" hidden>Copy to clipboard</span>
+                                </div>
+                                <img src="https://img.icons8.com/?size=512&id=43148&format=png" alt="share-button" title="Share Button" class="w-7 h-7 cursor-pointer"  >
+                            </td>
+
+                            <td class="pl-3">
+                                <a href=" {% url 'delete_profile' profile.id %}">
+                                    <img src="https://img.icons8.com/?size=512&id=102350&format=png" alt="delete-button" title="Delete Button" class="w-7 h-7">
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div>
+            
+        </div>
+    {% endif %}
+    <script>
+        function copyLink(idNum) {
+            var tooltip = document.getElementById('tooltip-'+idNum)
+            tooltip.innerHTML = "Copied"
+            var copyButton = document.getElementById('display-profile-'+idNum)
+            const link = copyButton.getAttribute('href')
+            navigator.clipboard.writeText(link)
+        }
+
+        function tooltipAppear(num) {
+            var tooltip = document.getElementById('tooltip-'+num)
+            tooltip.hidden = false
+        }
+
+        function tooltipDisappear(num) {
+            var tooltip = document.getElementById('tooltip-'+num)
+            tooltip.innerHTML = 'Copy to clipboard'
+            tooltip.hidden = true
+        }
+    </script>
     {% endif %}
     
 {% endblock %}

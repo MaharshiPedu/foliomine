@@ -17,7 +17,7 @@
                     </div>
                     <div class="mt-4 mx-40">
                     
-                        <button class=" relative bg-gradient-to-br from-black to-gray-800  px-4 py-2 text-slate-100 rounded-2xl transition duration-400 ease-out hover:from-gray-800 hover:to-black hover:ring-2 hover:ring-gray-500">
+                        <button class=" relative bg-gradient-to-br from-gray-800 to-black  px-4 py-2 text-slate-100 rounded-2xl transition duration-400 ease-out hover:from-black hover:to-gray-800 hover:ring-2 hover:ring-gray-500">
                             
                             <a href="{{profile.github_link}}" class="">
                                 <span class="fa-brands fa-md fa-github mx-1"></span> 
@@ -82,10 +82,10 @@
                             {{ experience.exp_start_date }} - {{ experience.exp_end_date }}
                         </div>
 
-                        <div id="show-details-button{{ forloop.counter }}" onclick="show_details({{ forloop.counter }})">
+                        <div id="show-details-button{{ forloop.counter }}" onclick="show_details('{{ forloop.counter }}')">
                             <div class="flex justify-center">
                                 <div class="w-40 border-2 border-dashed border-indigo-500 rounded-2xl hover:bg-indigo-500 cursor-pointer mt-2 transition">
-                                    <p type="button" name="button" class="flex my-1 justify-center text-label_white hover:text-black">Show details</p>
+                                    <p type="button" name="button" class="flex my-1 justify-center text-label_white">Show details</p>
                                 </div>
                             </div>
                         </div>
@@ -149,7 +149,7 @@
 
             {% if educations %}
                 <div class="flex justify-center">
-                    <div class="text-slate-100 text-4xl mt-10 underline underline-offset-8 decoration-4 decoration-indigo-500">
+                    <div class="text-slate-100 text-4xl mt-10 underline underline-offset-8 decoration-4 decoration-pink-500">
                         Education
                     </div>
                 </div>
@@ -176,7 +176,7 @@
 
                         {% if not forloop.last %}
                             <div class="flex justify-center">
-                                <div class="w-1 h-20 border-2 border-indigo-500 rounded bg-indigo-500 mt-2 mb-2"></div>
+                                <div class="w-1 h-20 border-2 border-pink-500 rounded bg-pink-500 mt-2 mb-2"></div>
                             </div>
                         {% endif %}
                     {% endfor %}
