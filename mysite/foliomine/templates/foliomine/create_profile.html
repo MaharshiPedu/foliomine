@@ -280,24 +280,65 @@
 
     // Adding multiple projects
     const add_proj_button = document.getElementById('add-proj-more')
+    var proj_count = 0
 
     add_proj_button.addEventListener('click', () => {
+        proj_count++
         const profile_form = document.getElementById('profile-form')
         const internal_proj_form = document.getElementById('internal-proj-form').cloneNode(true)
+        var delete_proj = internal_proj_form.querySelector('#delete-proj')
+
         internal_proj_form.hidden = false
-        internal_proj_form.setAttribute('id', '')
+        internal_proj_form.setAttribute('id', 'proj-div-'+proj_count)
+        delete_proj.setAttribute('id', 'delete-proj-'+proj_count)
+        delete_proj.setAttribute('onclick', 'deleteProject('+proj_count+')')
         profile_form.insertBefore(internal_proj_form, add_proj_button)
     })
 
+    // Delete Project
+    function deleteProject(count) {
+        var proj = document.getElementById('proj-div-'+count)
+        for (let i = count+1; i <= proj_count; i++){
+            var proj_div = document.getElementById('proj-div-'+i)
+            var delete_proj = document.getElementById('delete-proj-'+i)
+            proj_div.setAttribute('id', 'proj-div-'+(i-1))
+            delete_proj.setAttribute('id', 'delete-proj-'+(i-1))
+            delete_proj.setAttribute('onclick', 'deleteProject('+(i-1)+')') 
+        }
+        proj.remove()
+        proj_count--
+    }
+
     // Add mulitple educations
     const add_edu_button = document.getElementById('add-edu-more')
+    var edu_count = 0
 
     add_edu_button.addEventListener('click', () => {
+        edu_count++
         const profile_form = document.getElementById('profile-form')
         const internal_edu_form = document.getElementById('internal-edu-form').cloneNode(true)
+        var delete_edu = internal_edu_form.querySelector('#delete-edu')
+
         internal_edu_form.hidden = false
-        internal_edu_form.setAttribute('id', '')
+        internal_edu_form.setAttribute('id', 'edu-div-'+edu_count)
+        delete_edu.setAttribute('id', 'delete-edu-'+edu_count)
+        delete_edu.setAttribute('onclick', 'deleteEducation('+edu_count+')')
         profile_form.insertBefore(internal_edu_form, add_edu_button)
     })
+
+    // Delete Education
+    function deleteEducation(count) {
+        var edu = document.getElementById('edu-div-'+count)
+        for (let i = count+1; i <= edu_count; i++){
+            var edu_div = document.getElementById('edu-div-'+i)
+            var delete_edu = document.getElementById('delete-edu-'+i)
+            edu_div.setAttribute('id', 'edu-div-'+(i-1))
+            delete_edu.setAttribute('id', 'delete-edu-'+(i-1))
+            delete_edu.setAttribute('onclick', 'deleteEducation('+(i-1)+')') 
+        }
+        edu.remove()
+        edu_count--
+    }
+
 </script>
 {% endblock %}

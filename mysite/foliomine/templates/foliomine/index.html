@@ -5,6 +5,18 @@
     <div class="flex justify-center mb-16">
         <p class="font-dm_sans text-6xl text-label_white">Dashboard</p>
     </div>
+    {% else %}
+            
+        <div class="flex justify-center mt-36">
+            <p class="text-label_white text-7xl font-dm_sans">Join <span class="font-jetbrains_mono font-semibold">foliomine</span> today!</p>
+        </div>
+        <br>
+        <br>
+        <div class="flex flex-row justify-center">
+            <a href="{% url 'login' %}" class="text-label_white font-dm_sans text-2xl font-semibold border-2 border-pink-600 bg-pink-600 px-4 py-2 rounded-2xl transition duration-200 hover:bg-transparent hover:text-pink-300">Login</a>
+            <a href="{% url 'register_user' %}" class="text-label_white font-dm_sans ml-6 text-2xl font-semibold border-2 border-green-600 bg-green-600 px-4 py-2 rounded-2xl transition duration-200 hover:bg-transparent hover:text-green-300">Register</a>
+        </div>
+    {% endif %}
     {% if profiles %}
         <div class="flex flex-col relative mx-80 w-auto rounded-2xl bg-[#1a2434] drop-shadow-2xl">
             <table class="table-auto text-left border-collapse">
@@ -45,11 +57,7 @@
                     {% endfor %}
                 </tbody>
             </table>
-        </div>
-    {% else %}
-        <div>
-            
-        </div>
+        </div> 
     {% endif %}
     <script>
         function copyLink(idNum) {
@@ -71,6 +79,5 @@
             tooltip.hidden = true
         }
     </script>
-    {% endif %}
     
 {% endblock %}
